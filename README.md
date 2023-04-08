@@ -1,7 +1,7 @@
 # Culture and Tourism Management System
 
 ## Introduction
-** Culture and Tourism Management System is the 3rd Year Semester 2 Project of Team Bug Squashers in SLIIT. ** 
+**Culture and Tourism Management System is the 3rd Year Semester 2 Project of Team Bug Squashers in SLIIT.** 
 
 This project is a web-based system designed to manage cultural and tourist activities in a particular region. The system serves as a one-stop-shop for tourists and locals to access information about cultural events, historical sites, natural attractions, and other tourist activities.
 
@@ -13,6 +13,8 @@ Overall, the Culture and Tourist Management System aims to promote cultural awar
 
 ## Technnologies Used
 
+|  | Key Technology |
+| -- | ------------ |
 | Client-side Javascript Famework | ReactJs |
 | Premier JavaScript Web Server | NodeJs |
 | Node.js Web Framework | ExpressJs |
