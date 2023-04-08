@@ -28,3 +28,5 @@ Overall, the Culture and Tourist Management System aims to promote cultural awar
 | Asitha I.G.G.V.Y | IT20256050 |
 | Dasanayaka D.M.D.L.B | IT20621360 |
 | Pallewatta U.D.P | IT20620820 |
+
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
