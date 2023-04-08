@@ -1,5 +1,7 @@
 # Culture and Tourism Management System
-Culture and Tourism Management System is the 3rd Year Semester 2 Project of Team Bug Squashers in SLIIT. 
+
+## Introduction
+** Culture and Tourism Management System is the 3rd Year Semester 2 Project of Team Bug Squashers in SLIIT. ** 
 
 This project is a web-based system designed to manage cultural and tourist activities in a particular region. The system serves as a one-stop-shop for tourists and locals to access information about cultural events, historical sites, natural attractions, and other tourist activities.
 
@@ -8,3 +10,19 @@ The Culture and Tourist Management System provides features for managing tourist
 The project utilizes modern web technologies such as React, Node.js, and MongoDB to ensure scalability, security, and reliability. The system includes features such as user authentication, payment processing, and real-time notifications, which enhance the user experience and help to keep them engaged with the platform.
 
 Overall, the Culture and Tourist Management System aims to promote cultural awareness and sustainable tourism practices while providing a user-friendly platform for tourists and locals to explore the region's unique culture and heritage.
+
+## Technnologies Used
+
+| Client-side Javascript Famework | ReactJs |
+| Premier JavaScript Web Server | NodeJs |
+| Node.js Web Framework | ExpressJs |
+| NoSQL Database (Document Based) | MongoDB |
+
+## Group Members
+
+| Name | Student ID |
+| ---- | ---------- |
+| Wilfred P.P.S | IT20601256 |
+| Asitha I.G.G.V.Y | IT20256050 |
+| Dasanayaka D.M.D.L.B | IT20621360 |
+| Pallewatta U.D.P | IT20620820 |
