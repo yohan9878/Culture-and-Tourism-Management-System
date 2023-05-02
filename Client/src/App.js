@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Login from "./components/login/login.jsx";
 import Header from "./components/common/header/header.jsx";
 import Footer from "./components/common/footer/footer.jsx";
+import "./app.css";
 
 function App() {
 	return (
@@ -13,9 +14,9 @@ function App() {
 				<Header />
 				<Routes>
 					<Route path="/auth/login" element={<Login />} exact />
-				</Routes>
+				</Routes>{" "}
 				<Footer />
-			</Router>
+			</Router>{" "}
 		</>
 	);
 }
