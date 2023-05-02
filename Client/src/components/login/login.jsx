@@ -62,11 +62,11 @@ const Login = () => {
 								<label for="password">Password</label>
 							</div>
 							<div className="input-field">
-								<input
+								<button
 									type="submit"
-									className="submit"
-									value="Login"
-								/>
+									className="custom-btn btn-15">
+									Login
+								</button>
 							</div>
 							<div className="signin">
 								<span>

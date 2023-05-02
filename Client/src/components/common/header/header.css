@@ -1,0 +1,21 @@
+.loginBtn {
+	color: #5ebc67;
+	text-decoration: none;
+}
+
+.loginBtn:hover {
+	background-color: #ececec;
+	text-decoration: none;
+	color: #5ebc67;
+	border: solid #5ebc67 1px;
+}
+
+.registerBtn {
+	background-color: #5ebc67;
+	border: solid #5ebc67 1px;
+}
+
+.registerBtn:hover {
+	background-color: #53a65b;
+	border: solid #53a65b 1px;
+}
