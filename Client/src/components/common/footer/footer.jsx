@@ -55,7 +55,7 @@ const Footer = () => {
 						<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 							{/* <!-- Content --> */}
 							<h6 class="text-uppercase fw-bold mb-4">
-								<i class="fas fa-gem me-3"></i>Company name
+								Travel Bee
 							</h6>
 							<p>
 								Here you can use rows and columns to
@@ -158,11 +158,12 @@ const Footer = () => {
 			<div
 				class="text-center p-4"
 				style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}>
-				© 2021 Copyright:
+				© 2023 Copyright:
 				<a
 					class="text-reset fw-bold"
-					href="https://mdbootstrap.com/">
-					MDBootstrap.com
+					href="http://localhost:3000/">
+					{" "}
+					TravelBee.com
 				</a>
 			</div>
 			{/* <!-- Copyright --> */}

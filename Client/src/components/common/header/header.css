@@ -1,20 +1,21 @@
-.logo {
-    margin-right: 10px;
-    margin-left: auto;
-    width: auto;
-    height: 50px;
+.loginBtn {
+	color: #5ebc67;
+	text-decoration: none;
 }
 
-.nav {
-    width: 100%;
-    background-color: #000;
+.loginBtn:hover {
+	background-color: #ececec;
+	text-decoration: none;
+	color: #5ebc67;
+	border: solid #5ebc67 1px;
 }
 
-.navContainer {
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    height: 5rem;
-    z-index: 10;
-    padding: 0px 24px;
+.registerBtn {
+	background-color: #5ebc67;
+	border: solid #5ebc67 1px;
+}
+
+.registerBtn:hover {
+	background-color: #53a65b;
+	border: solid #53a65b 1px;
 }
