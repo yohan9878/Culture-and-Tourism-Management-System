@@ -4,7 +4,10 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 
 const authRoute = require("./api/routes/authRoutes");
+
+//importRoutes
 import careerRoute from "./api/routes/careerRoute";
+import postRoute from "./api/routes/postRoute";
 
 const app = express();
 dotenv.config();
@@ -26,6 +29,7 @@ app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.use(careerRoute);
+app.use(postRoute);
 
 // creating the port connection with the backend server
 const port = process.env.PORT || 5000;
