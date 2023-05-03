@@ -63,7 +63,7 @@ const SliderHome = () => {
 				</div>
 				<div>
 					<h6 style={{ ...contentStyle, ...background2 }}>
-						The Temple of the Sacred Tooth Relic is a
+						<b>The Temple of the Sacred Tooth Relic </b> is a
 						world-renowned place of worship, where the left
 						Canine tooth of Gautama Buddha is enshrined. The
 						temple which is venerated by thousands of local &
@@ -73,9 +73,9 @@ const SliderHome = () => {
 				</div>
 				<div>
 					<h6 style={{ ...contentStyle, ...background3 }}>
-						Bentota is a tourist attraction, with a local
-						airport (Bentota River Airport) and a handful of
-						world-class hotels. It is a destination for
+						<b>Bentota</b> is a tourist attraction, with a
+						local airport (Bentota River Airport) and a handful
+						of world-class hotels. It is a destination for
 						watersports. Bentota also delivers an ancient art
 						of healing called Ayurveda. Bentota is famous for
 						its toddy production, an alcoholic beverage made
@@ -85,12 +85,12 @@ const SliderHome = () => {
 				</div>
 				<div>
 					<h6 style={{ ...contentStyle, ...background4 }}>
-						The Nine Arch Bridge, also known as the ‘Bridge in
-						the Sky’ was constructed by connecting two bog
-						mountains when constructing the Badulla – Colombo
-						railway. This bridge is 300 feet in length, 25 feet
-						in width and 80-100 feet in height. It is one of
-						the best examples of colonial-era railway
+						<b>The Nine Arch Bridge,</b> also known as the
+						‘Bridge in the Sky’ was constructed by connecting
+						two bog mountains when constructing the Badulla –
+						Colombo railway. This bridge is 300 feet in length,
+						25 feet in width and 80-100 feet in height. It is
+						one of the best examples of colonial-era railway
 						construction in the country.
 					</h6>
 				</div>
