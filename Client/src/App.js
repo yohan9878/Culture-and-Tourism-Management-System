@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Login from "./components/login/login.jsx";
 import Header from "./components/common/header/header.jsx";
 import Footer from "./components/common/footer/footer.jsx";
+import Home from "./components/home/home.jsx";
 import "./app.css";
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 			<Router>
 				<Header />
 				<Routes>
+					<Route path="/" element={<Home />} />{" "}
 					<Route path="/auth/login" element={<Login />} exact />
 				</Routes>{" "}
 				<Footer />
