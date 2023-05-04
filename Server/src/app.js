@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const bodyParser = require("body-parser");
 
 const authRoute = require("./api/routes/authRoutes");
 
@@ -13,6 +14,7 @@ const app = express();
 dotenv.config();
 
 app.use(cors());
+app.use(bodyParser.json());
 
 // creating the connection with database
 mongoose
@@ -30,6 +32,8 @@ app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use(careerRoute);
 app.use(postRoute);
+// const postRouter = require("./api/controllers/admin/Posts");
+// app.use("/post", postRouter);
 
 // creating the port connection with the backend server
 const port = process.env.PORT || 5000;
