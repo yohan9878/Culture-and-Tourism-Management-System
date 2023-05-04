@@ -1,5 +1,5 @@
 import React from "react";
-import SliderHome from "../Slider/Slider";
+import SliderHome from "../slider/slider";
 
 const Home = () => {
 	return (

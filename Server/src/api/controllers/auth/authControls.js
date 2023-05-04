@@ -21,20 +21,25 @@ const register = async (req, res) => {
 			firstname: req.body.firstname,
 			lastname: req.body.lastname,
 			email: req.body.email,
-			phoneNumber: req.body.phoneNumber,
-			nicType: req.body.nicType,
-			nic: req.body.nic,
-			country: req.body.country,
-			dob: req.body.dob,
+			mobile: req.body.mobile,
+			nationality: req.body.nationality,
+			nic_passport: req.body.nic_passport,
+			address_country: req.body.address_country,
 			gender: req.body.gender,
 			password: hashPassword,
+			isForiegner: req.body.isForiegner,
 		});
 
 		try {
 			newUser.save();
-			return res.status(200).json({ user: newUser });
+			return res.status(200).json({
+				user: newUser,
+				message: "User Registered Succefully !",
+			});
 		} catch (error) {
-			return res.status(400).json({ message: error });
+			return res
+				.status(400)
+				.json({ message: "User Registration Error !" });
 		}
 	}
 };
@@ -67,7 +72,7 @@ const login = async (req, res) => {
 			});
 			return res.status(200).json({
 				Login: true,
-				message: "Login Successfull",
+				message: "Login Successfull !",
 				token,
 				userData,
 			});
