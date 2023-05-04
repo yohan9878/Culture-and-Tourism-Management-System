@@ -1,9 +1,53 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { Flip } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./login.css";
 
 const Login = () => {
+	const navigate = useNavigate();
+
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+
+	const data = {
+		email: email,
+		password: password,
+	};
+
+	const handleLogin = async (req, res) => {
+		try {
+			await axios
+				.post("http://localhost:5000/api/auth/", data)
+				.then((res) => {
+					toast.success(res.data.message);
+					localStorage.setItem("login", true);
+					localStorage.setItem("_id", res.data.userData._id);
+					localStorage.setItem(
+						"name",
+						res.data.userData.firstname +
+							" " +
+							res.data.userData.lastname,
+					);
+					setInterval(() => {
+						navigate("/");
+						window.location.reload();
+					}, 1700);
+				});
+		} catch (error) {
+			if (
+				error.response &&
+				error.response.status >= 400 &&
+				error.response.status <= 500
+			) {
+				toast.error(error.response.data.message);
+			}
+		}
+	};
+
 	return (
 		<div class="wrapper">
 			<div class="container main">
@@ -49,6 +93,9 @@ const Login = () => {
 									id="email"
 									required
 									autocomplete="off"
+									onChange={(e) =>
+										setEmail(e.target.value)
+									}
 								/>
 								<label for="email">Email</label>
 							</div>
@@ -58,26 +105,43 @@ const Login = () => {
 									className="input"
 									id="password"
 									required
+									onChange={(e) =>
+										setPassword(e.target.value)
+									}
 								/>
 								<label for="password">Password</label>
 							</div>
 							<div className="input-field">
 								<button
 									type="submit"
-									className="custom-btn btn-15">
+									className="custom-btn btn-15"
+									onClick={handleLogin}>
 									Login
 								</button>
 							</div>
 							<div className="signin">
 								<span>
 									Don't have an account?{" "}
-									<a href="#"> Register</a>
+									<a href="/auth/register"> Register</a>
 								</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<ToastContainer
+				position="top-right"
+				autoClose={1000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				transition={Flip}
+				pauseOnHover={false}
+				theme="colored"
+			/>
 		</div>
 	);
 };

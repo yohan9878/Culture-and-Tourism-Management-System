@@ -2,9 +2,32 @@
 import React from "react";
 import logo from "../../../assets/images/logo-no-background.png";
 import { Link } from "react-router-dom";
+import avatar from "../../../assets/images/avatar2.png";
+import { useNavigate } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+
 import "./header.css";
 
 const Header = () => {
+	const navigate = useNavigate();
+
+	const isLogged = localStorage.getItem("login");
+	const username = localStorage.getItem("name");
+	const id = localStorage.getItem("_id");
+
+	console.log("id: ", id);
+
+	const logout = async () => {
+		console.log("logout");
+		localStorage.clear();
+		navigate("/");
+		window.location.reload();
+	};
+
+	const profileNavigate = () => {
+		navigate("/user/" + id);
+	};
+
 	return (
 		// <!-- Navbar -->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -57,45 +80,93 @@ const Header = () => {
 						<li
 							class="nav-item"
 							style={{ margin: "0px 10px" }}>
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="/locations">
 								Locations
 							</a>
 						</li>
 						<li
 							class="nav-item"
 							style={{ margin: "0px 10px" }}>
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="/about">
 								About Us
 							</a>
 						</li>
 						<li
 							class="nav-item"
 							style={{ margin: "0px 10px" }}>
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="/contact">
 								Contact Us
 							</a>
 						</li>
 					</ul>
-					{/* <!-- Left links --> */}
-
-					<div class="d-flex align-items-center">
-						<Link to="/auth/login">
+					{isLogged ? (
+						<div class="d-flex align-items-center">
 							<button
 								type="button"
-								class="btn btn-sm btn-link px-3 me-2 text-uppercase loginBtn">
-								Login
+								onClick={logout}
+								class="btn btn-sm text-uppercase me-3 registerBtn">
+								Logout
 							</button>
-						</Link>
-						<button
-							type="button"
-							class="btn btn-sm btn-primary text-uppercase me-3 registerBtn">
-							Sign up for free
-						</button>
-					</div>
+
+							<button
+								type="button"
+								disabled={true}
+								class="btn btn-sm text-uppercase me-3 registerBtn">
+								{username}
+							</button>
+						</div>
+					) : (
+						/* <!-- Left links --> */
+						<div class="d-flex align-items-center">
+							<Link to="/auth/login">
+								<button
+									type="button"
+									class="btn btn-sm btn-link px-3 me-2 text-uppercase loginBtn">
+									Login
+								</button>
+							</Link>
+							<Link to="/auth/register">
+								<button
+									type="button"
+									class="btn btn-sm text-uppercase me-3 registerBtn">
+									Sign up for free
+								</button>
+							</Link>
+						</div>
+					)}
 				</div>
+
+				{isLogged ? (
+					/* <!-- Right elements --> */
+					<div class="d-flex align-items-center">
+						{/* <!-- Avatar --> */}
+						<div class="dropdown">
+							<img
+								src={avatar}
+								alt="Avatar"
+								class="avatar"
+								onClick={profileNavigate}
+								data-tooltip-id="tooltip"
+								data-tooltip-content="Go to Profile"
+								data-tooltip-place="bottom"
+							/>
+						</div>
+					</div>
+				) : (
+					<div></div>
+				)}
 				{/* <!-- Collapsible wrapper --> */}
 			</div>
 			{/* <!-- Container wrapper --> */}
+			<Tooltip
+				id="tooltip"
+				style={{
+					color: "#53a65b",
+					zIndex: "10",
+					backgroundColor: "#e5e5e5",
+					fontSize: "12px",
+				}}
+			/>
 		</nav>
 	);
 };
