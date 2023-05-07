@@ -21,6 +21,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import SliderHome from "../Slider/Slider";
+import { useParams } from "react-router-dom";
 
 const blue = {
   100: "#DAECFF",
@@ -210,7 +211,7 @@ const StyledGroupOptions = styled("ul")`
 //   }),
 // };
 
-export default function AddProduct() {
+export default function UpdateProduct() {
   const [category, setCategory] = React.useState([]);
   console.log("🚀 ~ file: index.jsx:228 ~ AddProduct ~ category", category);
   const [mainCategory, setMainCategory] = React.useState([]);
@@ -219,6 +220,8 @@ export default function AddProduct() {
   const [image, setImage] = React.useState(false);
   console.log("🚀 ~ file: index.jsx:232 ~ AddProduct ~ image", image);
   const [isMen, setIsMen] = React.useState(false);
+  const params = useParams();
+  const productId = params.id;
   const [product, setProduct] = React.useState({
     name: "",
     price: "",
@@ -229,42 +232,43 @@ export default function AddProduct() {
     productImage: "",
     description: "",
   });
-  useEffect(() => {
-    const getMainCategory = async () => {
-      await axios
-        .get(`http://localhost:5000/api/MainCategory/`)
-        .then((res) => {
-          console.log(res);
-          setMainCategory(res.data.data);
-        })
-        .catch((err) => {
-          console.log(
-            "🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
-            err.massage
-          );
-        });
-    };
-    const getAllCategory = async () => {
-      await axios
-        .post(`http://localhost:5000/api/IdSubCategory/`, { parent: parent })
-        .then((res) => {
-          console.log(res);
-          setCategory(res.data.data);
-        })
-        .catch((err) => {
-          console.log(
-            "🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
-            err.massage
-          );
-        });
-    };
+//   useEffect(() => {
+//     const getMainCategory = async () => {
+//       await axios
+//         .get(`http://localhost:5000/api/MainCategory/`)
+//         .then((res) => {
+//           console.log(res);
+//           setMainCategory(res.data.data);
+//         })
+//         .catch((err) => {
+//           console.log(
+//             "🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
+//             err.massage
+//           );
+//         });
+//     };
+//     const getAllCategory = async () => {
+//       await axios
+//         .post(`http://localhost:5000/api/IdSubCategory/`, { parent: parent })
+//         .then((res) => {
+//           console.log(res);
+//           setCategory(res.data.data);
+//         })
+//         .catch((err) => {
+//           console.log(
+//             "🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
+//             err.massage
+//           );
+//         });
+//     };
 
-    getMainCategory();
-    if (parent) {
-      getAllCategory();
-    } else {
-    }
-  }, [parent]);
+//     getMainCategory();
+//     if (parent) {
+//       getAllCategory();
+//     } else {
+//     }
+//   }, [parent]);
+
   const onClickAdd = async (e) => {
     e.preventDefault();
     if (product.name === "" || product.price === "" || product.color === "") {
@@ -283,7 +287,16 @@ export default function AddProduct() {
       }
     }
   };
-
+  React.useState(() => {
+    fetchData();
+  });
+  
+  async function fetchData() {
+    const response = await axios.get(
+      `http://localhost:5000/api/product/get/${productId}`
+    );
+    setProduct(response.data.data);
+  }
   const handleImage = async (e) => {
     e.preventDefault();
     try {
@@ -379,7 +392,7 @@ export default function AddProduct() {
               fontWeight: "bold",
             }}
           >
-            Add New Product
+            Update Product
           </Typography>
 
           <hr color="black"></hr>
@@ -434,7 +447,7 @@ export default function AddProduct() {
                     <TextField
                       label="Name"
                       id="outlined-size-small"
-                      defaultValue={product.name}
+                      value={product.name}
                       size="small"
                       onChange={(e) => onChangeInput(e)}
                       name="name"
@@ -475,7 +488,7 @@ export default function AddProduct() {
                     <TextField
                       label="Price"
                       id="outlined-size-small"
-                      defaultValue={product.price}
+                      value={product.price}
                       size="small"
                       onChange={(e) => onChangeInput(e)}
                       name="price"
@@ -516,7 +529,7 @@ export default function AddProduct() {
                     <TextField
                       label="Description"
                       id="outlined-size-small"
-                      defaultValue={product.color}
+                      value={product.color}
                       size="small"
                       onChange={(e) => onChangeInput(e)}
                       name="color"
@@ -557,7 +570,7 @@ export default function AddProduct() {
                     <TextField
                       label="Qty"
                       id="outlined-size-small"
-                      defaultValue={product.size}
+                     value={product.size}
                       size="small"
                       onChange={(e) => onChangeInput(e)}
                       name="size"
@@ -677,13 +690,13 @@ export default function AddProduct() {
                     justifyContent="flex-start"
                     alignItems="center"
                   >
-                    <ImageUploadButton component="label" >
+                    <ImageUploadButton component="label">
                       <input type="file" hidden onChange={handleImage} />
                       {image ? (
                         <Box sx={{ minWidth: 400, maxWidth: 400 }}>
                           <img
                             alt="forum_post"
-                            src={image}
+                            src={product.productImage}
                             style={{
                               height: 600,
                               width: 600,
@@ -729,14 +742,13 @@ export default function AddProduct() {
               direction="row"
               justifyContent="center"
               alignItems="center"
-              color='#5ebc67'
             >
               <Button
                 variant="contained"
-                sx={{background:'#5ebc67'}}
+                sx={{background:'#5ebc67',hover:"red"}}
                 onClick={onClickAdd}
               >
-                Add Product
+                Update Product
               </Button>
             </Grid>
           </Grid>

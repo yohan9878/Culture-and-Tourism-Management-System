@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 
-export default function MediaCard() {
+export default function MediaCardUser() {
   let navigate = useNavigate()
 
   const UpdateProduct =(id)=>{
@@ -65,8 +65,8 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small"  onClick={() => UpdateProduct(product._id)}   sx={{marginLeft:"55%" ,color:'#5ebc67'}}>Edit</Button>
-        <Button size="small" sx={{marginLeft:"55%" ,color:'red'}}>Remove</Button>
+        
+        <Button size="small" variant="contained"  sx={{marginLeft:"70%" ,background:'#5ebc67'}}>Buy Now</Button>
       </CardActions>
     </Card>
     </Grid>

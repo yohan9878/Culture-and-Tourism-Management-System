@@ -9,7 +9,7 @@ const ImageUploadButton = styled(Button)(({ theme }) => ({
     textTransform: "none",
     // border: `0.2px solid ${theme.palette.prime_psycheColors.prime_psyche_charcoal3}`,
     marginRight: theme.spacing(0.4),
-  color:'#5ebc67'
+    color:'#5ebc67'
   }));
 
 export {

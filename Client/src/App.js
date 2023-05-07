@@ -11,6 +11,7 @@ import SuplierHome from "./components/suppplierHome/home.jsx";
 import Cart from "./components/common/Cart/Cart.jsx";
 import ProductView from "./components/viewProduct/index.jsx";
 import AddProduct from "./components/addProduct/index.jsx";
+import UpdateProduct from "./components/updateProduct/index.jsx";
 
 function App() {
 	//Step 2 :
@@ -85,6 +86,7 @@ function App() {
 					<Route path="/supplier" element={<SuplierHome />} />{" "}
 					<Route path="/viewProduct" element={< ProductView />} />{" "}
 					<Route path="/addProduct" element={< AddProduct />} />{" "}
+					<Route path="/updateProduct/:id" element={< UpdateProduct />} />{" "}
 				</Routes>{" "}
 				<Footer />
 			</Router>{" "}

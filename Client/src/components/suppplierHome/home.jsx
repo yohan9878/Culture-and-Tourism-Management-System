@@ -1,6 +1,7 @@
 import React from "react";
 import SliderHome from "../Slider/Slider";
 import FlashCard from "../productCard";
+import MediaCard from "../productCard";
 
 const SuplierHome = () => {
 	return (
@@ -12,8 +13,7 @@ const SuplierHome = () => {
 		  </div>
 		  <hr color="black" style={{ marginTop: "30px" ,marginRight:"25%",marginLeft:"25%"}}></hr>
 		  <div style={{ marginTop: "30px",marginBottom: "30px"  ,marginRight:"15px",marginLeft:"15px"}}>
-			<FlashCard/>
-		
+			<MediaCard/>
 		  </div>
 
 		</div>
