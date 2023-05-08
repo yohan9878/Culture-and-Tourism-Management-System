@@ -35,7 +35,7 @@ mongoose
 	.then(() => {
 		console.log("Database Connection Succeeded 🔥");
 	})
-	.catch((err) => {
+	.catch((err, res) => {
 		console.log("Database Connection Failed ❌ - Error: " + err);
 	});
 
@@ -55,9 +55,6 @@ app.use("/api", categoryImageRoute);
 // creating the port connection with the backend server
 const port = process.env.PORT || 5000;
 
-app.listen(process.env.PORT || 5000, () => {
-	console.log(
-		"Server listening on port " + process.env.PORT || 5000,
-		"🔥",
-	);
+app.listen(port || 5000, () => {
+	console.log("Server listening on port " + port || 5000, "🔥");
 });

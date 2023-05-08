@@ -6,6 +6,9 @@ import Login from "./components/login/login.jsx";
 import Header from "./components/common/header/header.jsx";
 import Footer from "./components/common/footer/footer.jsx";
 import Home from "./components/home/home.jsx";
+import Register from "./components/register/register.jsx";
+import "react-toastify/dist/ReactToastify.css";
+import "react-tooltip/dist/react-tooltip.css";
 import "./app.css";
 import SuplierHome from "./components/suppplierHome/home.jsx";
 import Cart from "./components/common/Cart/Cart.jsx";
@@ -80,7 +83,8 @@ function App() {
 					    CartItem={CartItem}
 						addToCart={addToCart}
 						decreaseQty={decreaseQty}
-					/>} />{" "}
+					/>} />
+					<Route path="/auth/register" element={<Register />} />{" "}
 					<Route path="/" element={<Home />} />{" "}
 					<Route path="/auth/login" element={<Login />} exact />
 					<Route path="/supplier" element={<SuplierHome />} />{" "}

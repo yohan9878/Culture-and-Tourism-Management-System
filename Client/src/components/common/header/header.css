@@ -13,9 +13,32 @@
 .registerBtn {
 	background-color: #5ebc67;
 	border: solid #5ebc67 1px;
+	color: #fff;
 }
 
 .registerBtn:hover {
 	background-color: #53a65b;
 	border: solid #53a65b 1px;
+	color: #fff;
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	position: initial;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+}
+
+.avatar:hover {
+	/* border: solid 3px #53a65b; */
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-o-transform: scale(1.1);
+	-ms-transform: scale(1.1);
+	transform: scale(1.1);
+	cursor: pointer;
 }
