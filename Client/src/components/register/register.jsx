@@ -17,13 +17,13 @@ const Register = () => {
 	}
 
 	const options1 = [
-		{ label: "Male", value: "male" },
-		{ label: "Female", value: "female" },
+		{ label: "Male", value: "Male" },
+		{ label: "Female", value: "Female" },
 	];
 
 	const options2 = [
-		{ label: "Sri Lankan", value: "SL" },
-		{ label: "Forigner", value: "FR" },
+		{ label: "Sri Lankan", value: "Sri Lankan" },
+		{ label: "Forigner", value: "Foriegner" },
 	];
 
 	const initialValues = {
@@ -38,9 +38,9 @@ const Register = () => {
 	};
 
 	const [formValues, setFormValues] = useState(initialValues);
-	const [gender, setGender] = useState("male");
+	const [gender, setGender] = useState("Male");
 	const [isForigner, setIsForigner] = useState(false);
-	const [nationality, setNationality] = useState("SL");
+	const [nationality, setNationality] = useState("Sri Lankan");
 	const [dob, setDob] = useState("");
 	const [message, setMessage] = useState({});
 	const [isSubmit, setIsSubmit] = useState(false);
@@ -53,7 +53,7 @@ const Register = () => {
 
 	const onChange2 = ({ target: { value } }) => {
 		// console.log("value: ", value);
-		if (value === "FR") {
+		if (value === "Foriegner") {
 			setIsForigner(true);
 			setNationality(value);
 		} else {

@@ -7,6 +7,7 @@ import Header from "./components/common/header/header.jsx";
 import Footer from "./components/common/footer/footer.jsx";
 import Home from "./components/home/home.jsx";
 import Register from "./components/register/register.jsx";
+import Profile from "./components/profile/profile.jsx";
 import "react-toastify/dist/ReactToastify.css";
 import "react-tooltip/dist/react-tooltip.css";
 import "./app.css";
@@ -79,6 +80,7 @@ function App() {
 			<Router>
 				<Header />
 				<Routes>
+					<Route path="/user/:id" element={<Profile />} exact />
 					<Route path="/cart" element={<Cart 
 					    CartItem={CartItem}
 						addToCart={addToCart}
@@ -91,9 +93,9 @@ function App() {
 					<Route path="/viewProduct" element={< ProductView />} />{" "}
 					<Route path="/addProduct" element={< AddProduct />} />{" "}
 					<Route path="/updateProduct/:id" element={< UpdateProduct />} />{" "}
-				</Routes>{" "}
+				</Routes>
 				<Footer />
-			</Router>{" "}
+			</Router>
 		</>
 	);
 }

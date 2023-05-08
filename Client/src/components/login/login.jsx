@@ -23,6 +23,7 @@ const Login = () => {
 			await axios
 				.post("http://localhost:5000/api/auth/", data)
 				.then((res) => {
+					console.log(res.data);
 					toast.success(res.data.message);
 					localStorage.setItem("login", true);
 					localStorage.setItem("_id", res.data.userData._id);
@@ -32,10 +33,18 @@ const Login = () => {
 							" " +
 							res.data.userData.lastname,
 					);
-					setInterval(() => {
-						navigate("/");
-						window.location.reload();
-					}, 1700);
+					localStorage.setItem("role", res.data.Role);
+					if (res.data.Role === "user") {
+						setInterval(() => {
+							navigate("/");
+							window.location.reload();
+						}, 1700);
+					} else {
+						setInterval(() => {
+							navigate("/auth/register");
+							window.location.reload();
+						}, 1700);
+					}
 				});
 		} catch (error) {
 			if (

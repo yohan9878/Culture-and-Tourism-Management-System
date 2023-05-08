@@ -3,6 +3,9 @@ import SliderHome from "../Slider/Slider";
 import FlashCard from "../productCard";
 import MediaCardUser from "../userProductCard";
 import SliderHome from "../slider/slider";
+import LocationCard from "../locationCards/cards";
+import Heading from "../headings/headings";
+import data from "../../Data";
 
 
 const Home = () => {

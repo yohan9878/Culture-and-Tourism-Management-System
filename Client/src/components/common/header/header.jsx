@@ -14,6 +14,7 @@ const Header = () => {
 	const isLogged = localStorage.getItem("login");
 	const username = localStorage.getItem("name");
 	const id = localStorage.getItem("_id");
+	const role = localStorage.getItem("role");
 
 	console.log("id: ", id);
 
@@ -70,13 +71,25 @@ const Header = () => {
 					<ul
 						class="navbar-nav me-auto mb-2 mb-lg-0"
 						style={{ marginLeft: "50px" }}>
-						<li
-							class="nav-item"
-							style={{ margin: "0px 10px" }}>
-							<a class="nav-link" href="/">
-								Home
-							</a>
-						</li>
+						{role === "admin" ? (
+							<li
+								class="nav-item"
+								style={{ margin: "0px 10px" }}>
+								<a
+									class="nav-link"
+									href="/admin/dashboard">
+									Dashboard
+								</a>
+							</li>
+						) : (
+							<li
+								class="nav-item"
+								style={{ margin: "0px 10px" }}>
+								<a class="nav-link" href="/">
+									Home
+								</a>
+							</li>
+						)}
 						<li
 							class="nav-item"
 							style={{ margin: "0px 10px" }}>

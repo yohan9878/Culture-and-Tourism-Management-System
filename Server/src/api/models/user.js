@@ -12,6 +12,7 @@ const user = new mongoose.Schema(
 		gender: { type: String, required: true },
 		password: { type: String, required: true },
 		isForiegner: { type: Boolean },
+		isAdmin: { type: Boolean, default: false },
 	},
 	{ timestamps: true },
 );
