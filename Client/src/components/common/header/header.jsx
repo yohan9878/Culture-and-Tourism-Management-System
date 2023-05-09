@@ -15,6 +15,7 @@ const Header = () => {
 	const username = localStorage.getItem("name");
 	const id = localStorage.getItem("_id");
 	const role = localStorage.getItem("role");
+	const image = localStorage.getItem("image");
 
 	console.log("id: ", id);
 
@@ -75,10 +76,8 @@ const Header = () => {
 							<li
 								class="nav-item"
 								style={{ margin: "0px 10px" }}>
-								<a
-									class="nav-link"
-									href="/admin/dashboard">
-									Dashboard
+								<a class="nav-link" href="/supplier">
+									Home
 								</a>
 							</li>
 						) : (
@@ -90,13 +89,23 @@ const Header = () => {
 								</a>
 							</li>
 						)}
-						<li
-							class="nav-item"
-							style={{ margin: "0px 10px" }}>
-							<a class="nav-link" href="/locations">
-								Locations
-							</a>
-						</li>
+
+						{role === "admin" ? (
+							<li
+								class="nav-item"
+								style={{ margin: "0px 10px" }}>
+								<a
+									class="nav-link"
+									href="/admin/dashboard">
+									Dashboard
+								</a>
+							</li>
+						) : (
+							<li
+								class="nav-item"
+								style={{ margin: "0px 0px" }}></li>
+						)}
+
 						<li
 							class="nav-item"
 							style={{ margin: "0px 10px" }}>
@@ -155,13 +164,14 @@ const Header = () => {
 						{/* <!-- Avatar --> */}
 						<div class="dropdown">
 							<img
-								src={avatar}
+								src={image}
 								alt="Avatar"
 								class="avatar"
 								onClick={profileNavigate}
 								data-tooltip-id="tooltip"
 								data-tooltip-content="Go to Profile"
 								data-tooltip-place="bottom"
+								style={{ objectFit: "cover" }}
 							/>
 						</div>
 					</div>
