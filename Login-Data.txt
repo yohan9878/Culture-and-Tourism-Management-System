@@ -1,0 +1,17 @@
+=========================
+     Admin - 1 Login
+=========================
+Email: admin.1@gmail.com
+Password: poweruser@ctms
+
+==========================
+     Admin - 2 Login
+==========================
+Email: admin.2@gmail.com
+Password: poweruser@ctms
+
+==========================
+     User - 1 Login
+==========================
+Email: john.s2023@gmail.com
+Password: 123456789
