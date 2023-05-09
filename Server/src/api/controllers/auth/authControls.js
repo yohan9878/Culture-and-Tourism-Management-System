@@ -1,5 +1,5 @@
 const bcryptjs = require("bcryptjs");
-const User = require("../../models/auth");
+const User = require("../../models/user");
 const JWT = require("jsonwebtoken");
 const LocalStorage = require("node-localstorage").LocalStorage;
 var localstorage = new LocalStorage("./scratch");
@@ -24,6 +24,7 @@ const register = async (req, res) => {
 			mobile: req.body.mobile,
 			nationality: req.body.nationality,
 			nic_passport: req.body.nic_passport,
+			url: req.body.url,
 			address_country: req.body.address_country,
 			gender: req.body.gender,
 			password: hashPassword,
@@ -53,6 +54,7 @@ const login = async (req, res) => {
 			message: "Invalid email address",
 		});
 	} else {
+		let role;
 		// decrypt password
 		const password = await bcryptjs.compare(
 			req.body.password,
@@ -70,7 +72,15 @@ const login = async (req, res) => {
 			const token = JWT.sign({ id }, process.env.SECRETE, {
 				expiresIn: process.env.EXPIREIN,
 			});
+
+			if (userData.isAdmin) {
+				role = "admin";
+			} else {
+				role = "user";
+			}
+
 			return res.status(200).json({
+				Role: role,
 				Login: true,
 				message: "Login Successfull !",
 				token,

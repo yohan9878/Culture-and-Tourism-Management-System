@@ -12,18 +12,20 @@ import "./register.css";
 const Register = () => {
 	const navigate = useNavigate();
 
+	const login = localStorage.getItem("login");
+
 	function isObjEmpty(obj) {
 		return Object.keys(obj).length === 0;
 	}
 
 	const options1 = [
-		{ label: "Male", value: "male" },
-		{ label: "Female", value: "female" },
+		{ label: "Male", value: "Male" },
+		{ label: "Female", value: "Female" },
 	];
 
 	const options2 = [
-		{ label: "Sri Lankan", value: "SL" },
-		{ label: "Forigner", value: "FR" },
+		{ label: "Sri Lankan", value: "Sri Lankan" },
+		{ label: "Forigner", value: "Foriegner" },
 	];
 
 	const initialValues = {
@@ -32,18 +34,22 @@ const Register = () => {
 		email: "",
 		mobile: "",
 		nic: "",
+		url: "",
 		address: "",
 		password: "",
 		confirmPassword: "",
 	};
 
 	const [formValues, setFormValues] = useState(initialValues);
-	const [gender, setGender] = useState("male");
+	const [gender, setGender] = useState("Male");
 	const [isForigner, setIsForigner] = useState(false);
-	const [nationality, setNationality] = useState("SL");
+	const [nationality, setNationality] = useState("Sri Lankan");
 	const [dob, setDob] = useState("");
 	const [message, setMessage] = useState({});
 	const [isSubmit, setIsSubmit] = useState(false);
+	const [image, setImage] = useState(false);
+
+	console.log("image: ", image);
 
 	const dateofBirth = dayjs(dob.$d).format("YYYY-MM-DD");
 
@@ -53,7 +59,7 @@ const Register = () => {
 
 	const onChange2 = ({ target: { value } }) => {
 		// console.log("value: ", value);
-		if (value === "FR") {
+		if (value === "Foriegner") {
 			setIsForigner(true);
 			setNationality(value);
 		} else {
@@ -92,6 +98,7 @@ const Register = () => {
 				mobile: formValues.mobile,
 				nationality: nationality,
 				nic_passport: formValues.nic,
+				url: formValues.url,
 				address_country: formValues.address,
 				gender: gender,
 				password: formValues.password,
@@ -105,11 +112,19 @@ const Register = () => {
 					.post("http://localhost:5000/api/auth/user", data)
 					.then((res) => {
 						// console.log(res);
-						toast.success(res.data.message);
-						setInterval(() => {
-							navigate("/auth/login");
-							// window.location.reload();
-						}, 1700);
+						if (login) {
+							toast.success(res.data.message);
+							setInterval(() => {
+								navigate("/admin/users");
+								window.location.reload();
+							}, 1700);
+						} else {
+							toast.success(res.data.message);
+							setInterval(() => {
+								navigate("/auth/login");
+								// window.location.reload();
+							}, 1700);
+						}
 					});
 			} catch (error) {
 				if (
@@ -167,6 +182,40 @@ const Register = () => {
 	// 	}
 	// }, [message]);
 
+	const handleImage = async (e) => {
+		e.preventDefault();
+
+		try {
+			const file = e.target.files[0];
+			if (!file) return alert("File not exist.");
+			if (file.size > 1024 * 1024)
+				// 1mb
+				return alert("Size too large!");
+			if (file.type !== "image/jpeg" && file.type !== "image/png")
+				// 1mb
+				return alert("File format is incorrect.");
+			let formData = new FormData();
+			formData.append("file", file);
+
+			const res = await axios.post(
+				"http://localhost:5000/api/categoryImageUpload",
+				formData,
+				{
+					headers: {
+						"content-type": "multipart/form-data",
+					},
+				},
+			);
+			setImage(res.data.url);
+			setFormValues({
+				...formValues,
+				url: res.data.url,
+			});
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="wrapper">
 			<div className="container main">
@@ -203,7 +252,7 @@ const Register = () => {
 										value={formValues.firstname}
 										onChange={handleChange}
 										style={{
-											marginBottom: "1px",
+											marginBottom: "0px",
 										}}
 									/>
 									<label for="firstname">
@@ -212,13 +261,12 @@ const Register = () => {
 									</label>
 									<p
 										style={{
-											marginBottom: "15px",
-											fontSize: "12px",
+											marginBottom: "10px",
+											fontSize: "10px",
 											color: "red",
 											display: "flex",
 											alignItems: "start",
 											justifyContent: "start",
-											fontWeight: "500",
 										}}>
 										{message.firstname}
 									</p>
@@ -235,7 +283,7 @@ const Register = () => {
 										value={formValues.lastname}
 										onChange={handleChange}
 										style={{
-											marginBottom: "1px",
+											marginBottom: "0px",
 										}}
 									/>
 									<label for="lastname">
@@ -244,13 +292,12 @@ const Register = () => {
 									</label>
 									<p
 										style={{
-											marginBottom: "15px",
-											fontSize: "12px",
+											marginBottom: "10px",
+											fontSize: "10px",
 											color: "red",
 											display: "flex",
 											alignItems: "start",
 											justifyContent: "start",
-											fontWeight: "500",
 										}}>
 										{message.lastname}
 									</p>
@@ -273,13 +320,12 @@ const Register = () => {
 									<label for="email"> Email </label>
 									<p
 										style={{
-											marginBottom: "15px",
-											fontSize: "12px",
+											marginBottom: "10px",
+											fontSize: "10px",
 											color: "red",
 											display: "flex",
 											alignItems: "start",
 											justifyContent: "start",
-											fontWeight: "500",
 										}}>
 										{message.email}
 									</p>
@@ -301,13 +347,12 @@ const Register = () => {
 									<label for="mobile"> Mobile </label>
 									<p
 										style={{
-											marginBottom: "15px",
-											fontSize: "12px",
+											marginBottom: "10px",
+											fontSize: "10px",
 											color: "red",
 											display: "flex",
 											alignItems: "start",
 											justifyContent: "start",
-											fontWeight: "600",
 										}}>
 										{message.mobile}
 									</p>
@@ -342,7 +387,7 @@ const Register = () => {
 											optionType="button"
 											buttonStyle="solid"
 											style={{
-												marginBottom: "25px",
+												marginBottom: "10px",
 												display: "flex",
 												justifyContent: "start",
 												alignItems: "start",
@@ -374,16 +419,34 @@ const Register = () => {
 
 									<p
 										style={{
-											marginBottom: "50px",
-											fontSize: "12px",
+											marginBottom: "5px",
+											fontSize: "10px",
 											color: "red",
 											display: "flex",
 											alignItems: "start",
 											justifyContent: "start",
-											fontWeight: "500",
 										}}>
 										{message.nic}
 									</p>
+								</div>
+
+								{/* profile picture */}
+								<div className="input-field">
+									<label
+										className="form-label"
+										for="proPic">
+										Profile Picture
+									</label>
+									<input
+										class="form-control form-control-sm"
+										id="formFileSm"
+										type="file"
+										onChange={handleImage}
+										style={{
+											marginTop: "45px",
+											marginBottom: "10px",
+										}}
+									/>
 								</div>
 
 								{/* dob */}
@@ -487,8 +550,8 @@ const Register = () => {
 
 								<p
 									style={{
-										marginBottom: "15px",
-										fontSize: "12px",
+										marginBottom: "10px",
+										fontSize: "10px",
 										color: "red",
 										display: "flex",
 										alignItems: "start",
@@ -524,13 +587,12 @@ const Register = () => {
 								</small>
 								<p
 									style={{
-										marginBottom: "15px",
-										fontSize: "12px",
+										marginBottom: "10px",
+										fontSize: "10px",
 										color: "red",
 										display: "flex",
 										alignItems: "start",
 										justifyContent: "start",
-										fontWeight: "500",
 									}}>
 									{message.password}
 								</p>
@@ -560,17 +622,21 @@ const Register = () => {
 									Register
 								</button>
 							</div>
-							<div
-								className="signin"
-								style={{
-									marginTop: "10px",
-									marginBottom: "30px",
-								}}>
-								<span>
-									Already have an account ?
-									<a href="/auth/login"> Login </a>
-								</span>
-							</div>
+							{login ? (
+								<></>
+							) : (
+								<div
+									className="signin"
+									style={{
+										marginTop: "10px",
+										marginBottom: "30px",
+									}}>
+									<span>
+										Already have an account ?
+										<a href="/auth/login"> Login </a>
+									</span>
+								</div>
+							)}
 						</div>
 					</div>
 				</div>
