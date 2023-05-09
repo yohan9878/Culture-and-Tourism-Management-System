@@ -20,28 +20,28 @@ import axios from "axios";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import SliderHome from "../Slider/Slider";
+import SliderHome from "../slider/slider";
 
 const blue = {
-  100: "#DAECFF",
-  200: "#99CCF3",
-  400: "#3399FF",
-  500: "#007FFF",
-  600: "#0072E5",
-  900: "#003A75",
+	100: "#DAECFF",
+	200: "#99CCF3",
+	400: "#3399FF",
+	500: "#007FFF",
+	600: "#0072E5",
+	900: "#003A75",
 };
 
 const grey = {
-  50: "#f6f8fa",
-  100: "#eaeef2",
-  200: "#d0d7de",
-  300: "#afb8c1",
-  400: "#8c959f",
-  500: "#6e7781",
-  600: "#57606a",
-  700: "#424a53",
-  800: "#32383f",
-  900: "#24292f",
+	50: "#f6f8fa",
+	100: "#eaeef2",
+	200: "#d0d7de",
+	300: "#afb8c1",
+	400: "#8c959f",
+	500: "#6e7781",
+	600: "#57606a",
+	700: "#424a53",
+	800: "#32383f",
+	900: "#24292f",
 };
 
 // const StyledButton = styled("button")(
@@ -82,7 +82,7 @@ const grey = {
 // );
 
 const StyledListbox = styled("ul")(
-  ({ theme }) => `
+	({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -93,12 +93,14 @@ const StyledListbox = styled("ul")(
   overflow: auto;
   outline: 0px;
   background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
-  border: 1px solid ${theme.palette.mode === "dark" ? grey[700] : grey[200]};
+  border: 1px solid ${
+		theme.palette.mode === "dark" ? grey[700] : grey[200]
+  };
   color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
   box-shadow: 0px 4px 30px ${
-    theme.palette.mode === "dark" ? grey[900] : grey[200]
+		theme.palette.mode === "dark" ? grey[900] : grey[200]
   };
-  `
+  `,
 );
 
 // const StyledOption = styled(OptionUnstyled)(
@@ -133,26 +135,26 @@ const StyledListbox = styled("ul")(
 // );
 
 const StyledGroupRoot = styled("li")`
-  list-style: none;
+	list-style: none;
 `;
 
 const StyledGroupHeader = styled("span")`
-  display: block;
-  padding: 15px 0 5px 10px;
-  font-size: 0.75em;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05rem;
-  color: ${grey[600]};
+	display: block;
+	padding: 15px 0 5px 10px;
+	font-size: 0.75em;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05rem;
+	color: ${grey[600]};
 `;
 
 const StyledGroupOptions = styled("ul")`
-  list-style: none;
-  margin-left: 0;
-  padding: 0;
-  > li {
-    padding-left: 20px;
-  }
+	list-style: none;
+	margin-left: 0;
+	padding: 0;
+	> li {
+		padding-left: 20px;
+	}
 `;
 
 // const StyledPopper = styled(PopperUnstyled)`
@@ -211,361 +213,373 @@ const StyledGroupOptions = styled("ul")`
 // };
 
 export default function AddProduct() {
-  const [category, setCategory] = React.useState([]);
-  console.log("🚀 ~ file: index.jsx:228 ~ AddProduct ~ category", category);
-  const [mainCategory, setMainCategory] = React.useState([]);
-  const [parent, setParent] = React.useState();
-  console.log("🚀 ~ file: index.jsx:230 ~ AddProduct ~ parent", parent);
-  const [image, setImage] = React.useState(false);
-  console.log("🚀 ~ file: index.jsx:232 ~ AddProduct ~ image", image);
-  const [isMen, setIsMen] = React.useState(false);
-  const [product, setProduct] = React.useState({
-    name: "",
-    price: "",
-    color: "",
-    size: "",
-    // gender: "female",
-    // categories: "",
-    productImage: "",
-    description: "",
-  });
-  useEffect(() => {
-    const getMainCategory = async () => {
-      await axios
-        .get(`http://localhost:5000/api/MainCategory/`)
-        .then((res) => {
-          console.log(res);
-          setMainCategory(res.data.data);
-        })
-        .catch((err) => {
-          console.log(
-            "🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
-            err.massage
-          );
-        });
-    };
-    const getAllCategory = async () => {
-      await axios
-        .post(`http://localhost:5000/api/IdSubCategory/`, { parent: parent })
-        .then((res) => {
-          console.log(res);
-          setCategory(res.data.data);
-        })
-        .catch((err) => {
-          console.log(
-            "🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
-            err.massage
-          );
-        });
-    };
+	const [category, setCategory] = React.useState([]);
+	console.log(
+		"🚀 ~ file: index.jsx:228 ~ AddProduct ~ category",
+		category,
+	);
+	const [mainCategory, setMainCategory] = React.useState([]);
+	const [parent, setParent] = React.useState();
+	console.log("🚀 ~ file: index.jsx:230 ~ AddProduct ~ parent", parent);
+	const [image, setImage] = React.useState(false);
+	console.log("🚀 ~ file: index.jsx:232 ~ AddProduct ~ image", image);
+	const [isMen, setIsMen] = React.useState(false);
+	const [product, setProduct] = React.useState({
+		name: "",
+		price: "",
+		color: "",
+		size: "",
+		// gender: "female",
+		// categories: "",
+		productImage: "",
+		description: "",
+	});
+	useEffect(() => {
+		const getMainCategory = async () => {
+			await axios
+				.get(`http://localhost:5000/api/MainCategory/`)
+				.then((res) => {
+					console.log(res);
+					setMainCategory(res.data.data);
+				})
+				.catch((err) => {
+					console.log(
+						"🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
+						err.massage,
+					);
+				});
+		};
+		const getAllCategory = async () => {
+			await axios
+				.post(`http://localhost:5000/api/IdSubCategory/`, {
+					parent: parent,
+				})
+				.then((res) => {
+					console.log(res);
+					setCategory(res.data.data);
+				})
+				.catch((err) => {
+					console.log(
+						"🚀 ~ file: index.jsx:252 ~ getAllCategory ~ err",
+						err.massage,
+					);
+				});
+		};
 
-    getMainCategory();
-    if (parent) {
-      getAllCategory();
-    } else {
-    }
-  }, [parent]);
-  const onClickAdd = async (e) => {
-    e.preventDefault();
-    if (product.name === "" || product.price === "" || product.color === "") {
-      alert("Fill all the fields");
-    } else {
-      try {
-        const res = await axios.post(
-          "http://localhost:5000/api/product/create",
-          product
-        );
-        console.log(res);
-        // toast.success(res.data.message);
-      } catch (err) {
-        console.log(err);
-        // toast.error(err.response.data.message);
-      }
-    }
-  };
+		getMainCategory();
+		if (parent) {
+			getAllCategory();
+		} else {
+		}
+	}, [parent]);
+	const onClickAdd = async (e) => {
+		e.preventDefault();
+		if (
+			product.name === "" ||
+			product.price === "" ||
+			product.color === ""
+		) {
+			alert("Fill all the fields");
+		} else {
+			try {
+				const res = await axios.post(
+					"http://localhost:5000/api/product/create",
+					product,
+				);
+				console.log(res);
+				// toast.success(res.data.message);
+			} catch (err) {
+				console.log(err);
+				// toast.error(err.response.data.message);
+			}
+		}
+	};
 
-  const handleImage = async (e) => {
-    e.preventDefault();
-    try {
-      const file = e.target.files[0];
-      if (!file) return alert("File not exist.");
-      if (file.size > 1024 * 1024)
-        // 1mb
-        return alert("Size too large!");
-      if (file.type !== "image/jpeg" && file.type !== "image/png")
-        // 1mb
-        return alert("File format is incorrect.");
-      let formData = new FormData();
-      formData.append("file", file);
+	const handleImage = async (e) => {
+		e.preventDefault();
+		try {
+			const file = e.target.files[0];
+			if (!file) return alert("File not exist.");
+			if (file.size > 1024 * 1024)
+				// 1mb
+				return alert("Size too large!");
+			if (file.type !== "image/jpeg" && file.type !== "image/png")
+				// 1mb
+				return alert("File format is incorrect.");
+			let formData = new FormData();
+			formData.append("file", file);
 
-      const res = await axios.post(
-        "http://localhost:5000/api/categoryImageUpload",
-        formData,
-        {
-          headers: {
-            "content-type": "multipart/form-data",
-          },
-        }
-      );
-      setImage(res.data.url);
-      setProduct({
-        ...product,
-        productImage: res.data.url,
-      });
-      // toast.success(res.data.message);
-    } catch (err) {
-      // toast.error(err.response.data.msg);
-    }
-  };
-  const womenOptions = ["w opt1", "w opt2", "w opt3", "w opt4"];
-  const menOptions = ["opt1", "opt2", "opt3", "opt4"];
+			const res = await axios.post(
+				"http://localhost:5000/api/categoryImageUpload",
+				formData,
+				{
+					headers: {
+						"content-type": "multipart/form-data",
+					},
+				},
+			);
+			setImage(res.data.url);
+			setProduct({
+				...product,
+				productImage: res.data.url,
+			});
+			// toast.success(res.data.message);
+		} catch (err) {
+			// toast.error(err.response.data.msg);
+		}
+	};
+	const womenOptions = ["w opt1", "w opt2", "w opt3", "w opt4"];
+	const menOptions = ["opt1", "opt2", "opt3", "opt4"];
 
-  const handleSelect = (event) => {
-    setProduct({
-      ...product,
-      categories: event.target.value,
-    });
-  };
-  const mainHandleSelect = (event) => {
-    setParent(event.target.value);
-  };
-  const onChangeGender = (event) => {
-    setProduct({
-      ...product,
-      gender: event.target.value,
-    });
-    if (event.target.value === "female") {
-      setIsMen(false);
-    } else {
-      setIsMen(true);
-    }
-  };
+	const handleSelect = (event) => {
+		setProduct({
+			...product,
+			categories: event.target.value,
+		});
+	};
+	const mainHandleSelect = (event) => {
+		setParent(event.target.value);
+	};
+	const onChangeGender = (event) => {
+		setProduct({
+			...product,
+			gender: event.target.value,
+		});
+		if (event.target.value === "female") {
+			setIsMen(false);
+		} else {
+			setIsMen(true);
+		}
+	};
 
-  const onChangeInput = (e) => {
-    setProduct({
-      ...product,
-      [e.target.name]: e.target.value,
-    });
-  };
-  return (
-    <div>
-      <Box
-        padding={"40px"}
-        sx={{
-          background: "white",
-          width: "auto",
-          height: "auto",
-          margin: "20px",
-        }}
-        fullWidth
-      >
-        <Box
-          padding={"10px"}
-          sx={{
-            background: "white",
-            width: "auto",
-            height: "auto",
-            margin: "5px",
-          }}
-          fullWidth
-        >
-          <Typography
-            padding={"3px"}
-            variant="h5"
-            gutterBottom
-            sx={{
-              background: "white",
-              textAlign: "center",
-              fontWeight: "bold",
-            }}
-          >
-            Add New Product
-          </Typography>
+	const onChangeInput = (e) => {
+		setProduct({
+			...product,
+			[e.target.name]: e.target.value,
+		});
+	};
+	return (
+		<div>
+			<Box
+				padding={"40px"}
+				sx={{
+					background: "white",
+					width: "auto",
+					height: "auto",
+					margin: "20px",
+				}}
+				fullWidth>
+				<Box
+					padding={"10px"}
+					sx={{
+						background: "white",
+						width: "auto",
+						height: "auto",
+						margin: "5px",
+					}}
+					fullWidth>
+					<Typography
+						padding={"3px"}
+						variant="h5"
+						gutterBottom
+						sx={{
+							background: "white",
+							textAlign: "center",
+							fontWeight: "bold",
+						}}>
+						Add New Product
+					</Typography>
 
-          <hr color="black"></hr>
-        </Box>
-        <Grid container>
-          <Grid item xs={6}>
-            <Grid
-              container
-              direction="row"
-              justifyContent="flex-start"
-              alignItems="center"
-            >
-              <Box
-                padding={"20px"}
-                sx={{
-                  background: "white",
-                  height: "auto",
-                  margin: "10px",
-                }}
-                fullWidth
-              >
-                <Grid container direction="row" justifyContent="center">
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Typography
-                      padding={"3px"}
-                      variant="h7"
-                      gutterBottom
-                      sx={{
-                        background: "white",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Product Name
-                    </Typography>
-                  </Grid>
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                  >
-                    <TextField
-                      label="Name"
-                      id="outlined-size-small"
-                      defaultValue={product.name}
-                      size="small"
-                      onChange={(e) => onChangeInput(e)}
-                      name="name"
-                    />
-                  </Grid>
-                </Grid>
-                <br />
-                <Grid container direction="row" justifyContent="center">
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Typography
-                      padding={"3px"}
-                      variant="h7"
-                      gutterBottom
-                      sx={{
-                        background: "white",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Product Price
-                    </Typography>
-                  </Grid>
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                  >
-                    <TextField
-                      label="Price"
-                      id="outlined-size-small"
-                      defaultValue={product.price}
-                      size="small"
-                      onChange={(e) => onChangeInput(e)}
-                      name="price"
-                    />
-                  </Grid>
-                </Grid>
-                <br />
-                <Grid container direction="row" justifyContent="center">
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Typography
-                      padding={"3px"}
-                      variant="h7"
-                      gutterBottom
-                      sx={{
-                        background: "white",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Discription
-                    </Typography>
-                  </Grid>
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                  >
-                    <TextField
-                      label="Description"
-                      id="outlined-size-small"
-                      defaultValue={product.color}
-                      size="small"
-                      onChange={(e) => onChangeInput(e)}
-                      name="color"
-                    />
-                  </Grid>
-                </Grid>
-                <br />
-                <Grid container direction="row" justifyContent="center">
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Typography
-                      padding={"3px"}
-                      variant="h7"
-                      gutterBottom
-                      sx={{
-                        background: "white",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Product Quantity
-                    </Typography>
-                  </Grid>
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                  >
-                    <TextField
-                      label="Qty"
-                      id="outlined-size-small"
-                      defaultValue={product.size}
-                      size="small"
-                      onChange={(e) => onChangeInput(e)}
-                      name="size"
-                    />
-                  </Grid>
-                </Grid>
-                <br />
-                {/* <Grid container direction="row" justifyContent="center">
+					<hr color="black"></hr>
+				</Box>
+				<Grid container>
+					<Grid item xs={6}>
+						<Grid
+							container
+							direction="row"
+							justifyContent="flex-start"
+							alignItems="center">
+							<Box
+								padding={"20px"}
+								sx={{
+									background: "white",
+									height: "auto",
+									margin: "10px",
+								}}
+								fullWidth>
+								<Grid
+									container
+									direction="row"
+									justifyContent="center">
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="center"
+										alignItems="center">
+										<Typography
+											padding={"3px"}
+											variant="h7"
+											gutterBottom
+											sx={{
+												background: "white",
+												textAlign: "center",
+												fontWeight: "bold",
+											}}>
+											Product Name
+										</Typography>
+									</Grid>
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="flex-start"
+										alignItems="center">
+										<TextField
+											label="Name"
+											id="outlined-size-small"
+											defaultValue={product.name}
+											size="small"
+											onChange={(e) =>
+												onChangeInput(e)
+											}
+											name="name"
+										/>
+									</Grid>
+								</Grid>
+								<br />
+								<Grid
+									container
+									direction="row"
+									justifyContent="center">
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="center"
+										alignItems="center">
+										<Typography
+											padding={"3px"}
+											variant="h7"
+											gutterBottom
+											sx={{
+												background: "white",
+												textAlign: "center",
+												fontWeight: "bold",
+											}}>
+											Product Price
+										</Typography>
+									</Grid>
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="flex-start"
+										alignItems="center">
+										<TextField
+											label="Price"
+											id="outlined-size-small"
+											defaultValue={product.price}
+											size="small"
+											onChange={(e) =>
+												onChangeInput(e)
+											}
+											name="price"
+										/>
+									</Grid>
+								</Grid>
+								<br />
+								<Grid
+									container
+									direction="row"
+									justifyContent="center">
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="center"
+										alignItems="center">
+										<Typography
+											padding={"3px"}
+											variant="h7"
+											gutterBottom
+											sx={{
+												background: "white",
+												textAlign: "center",
+												fontWeight: "bold",
+											}}>
+											Discription
+										</Typography>
+									</Grid>
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="flex-start"
+										alignItems="center">
+										<TextField
+											label="Description"
+											id="outlined-size-small"
+											defaultValue={product.color}
+											size="small"
+											onChange={(e) =>
+												onChangeInput(e)
+											}
+											name="color"
+										/>
+									</Grid>
+								</Grid>
+								<br />
+								<Grid
+									container
+									direction="row"
+									justifyContent="center">
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="center"
+										alignItems="center">
+										<Typography
+											padding={"3px"}
+											variant="h7"
+											gutterBottom
+											sx={{
+												background: "white",
+												textAlign: "center",
+												fontWeight: "bold",
+											}}>
+											Product Quantity
+										</Typography>
+									</Grid>
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="flex-start"
+										alignItems="center">
+										<TextField
+											label="Qty"
+											id="outlined-size-small"
+											defaultValue={product.size}
+											size="small"
+											onChange={(e) =>
+												onChangeInput(e)
+											}
+											name="size"
+										/>
+									</Grid>
+								</Grid>
+								<br />
+								{/* <Grid container direction="row" justifyContent="center">
               <Grid
                 xs={6}
                 sx={{ background: "white" }}
@@ -605,8 +619,8 @@ export default function AddProduct() {
             </Select>
               </Grid>
             </Grid> */}
-                <br />
-                {/* <Grid container direction="row" justifyContent="center">
+								<br />
+								{/* <Grid container direction="row" justifyContent="center">
               <Grid
                 xs={6}
                 sx={{ background: "white" }}
@@ -646,107 +660,119 @@ export default function AddProduct() {
                 </Select>
               </Grid>
             </Grid> */}
-                <br />
-                <Grid container direction="row" justifyContent="center">
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Typography
-                      padding={"3px"}
-                      variant="h7"
-                      gutterBottom
-                      sx={{
-                        background: "white",
-                        textAlign: "center",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Product Image
-                    </Typography>
-                  </Grid>
-                  <Grid
-                    xs={6}
-                    sx={{ background: "white" }}
-                    container
-                    direction="row"
-                    justifyContent="flex-start"
-                    alignItems="center"
-                  >
-                    <ImageUploadButton component="label" >
-                      <input type="file" hidden onChange={handleImage} />
-                      {image ? (
-                        <Box sx={{ minWidth: 400, maxWidth: 400 }}>
-                          <img
-                            alt="forum_post"
-                            src={image}
-                            style={{
-                              height: 600,
-                              width: 600,
-                              objectFit: "cover",
-                            }}
-                          />
-                        </Box>
-                      ) : (
-                        <ImageOutlinedIcon
-                          sx={{ minHeight: 400, minWidth: 400 }}
-                        />
-                      )}
-                    </ImageUploadButton>
-                  </Grid>
-                </Grid>
-                <br />
-                <Grid
-                  xs={8}
-                  sx={{ background: "white" }}
-                  container
-                  direction="row"
-                  justifyContent="center"
-                  alignItems="flex-start"
-                >
-                  <Typography
-                    padding={"3px"}
-                    gutterBottom
-                    sx={{
-                      background: "white",
-                      textAlign: "center",
-                      fontSize: "10px",
-                    }}
-                  >
-                    JPEG, PNG, SVG or GIF <br />
-                    (Maximum file size 50MB)
-                  </Typography>
-                </Grid>
-              </Box>
-            </Grid>
+								<br />
+								<Grid
+									container
+									direction="row"
+									justifyContent="center">
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="center"
+										alignItems="center">
+										<Typography
+											padding={"3px"}
+											variant="h7"
+											gutterBottom
+											sx={{
+												background: "white",
+												textAlign: "center",
+												fontWeight: "bold",
+											}}>
+											Product Image
+										</Typography>
+									</Grid>
+									<Grid
+										xs={6}
+										sx={{ background: "white" }}
+										container
+										direction="row"
+										justifyContent="flex-start"
+										alignItems="center">
+										<ImageUploadButton component="label">
+											<input
+												type="file"
+												hidden
+												onChange={handleImage}
+											/>
+											{image ? (
+												<Box
+													sx={{
+														minWidth: 400,
+														maxWidth: 400,
+													}}>
+													<img
+														alt="forum_post"
+														src={image}
+														style={{
+															height: 600,
+															width: 600,
+															objectFit:
+																"cover",
+														}}
+													/>
+												</Box>
+											) : (
+												<ImageOutlinedIcon
+													sx={{
+														minHeight: 400,
+														minWidth: 400,
+													}}
+												/>
+											)}
+										</ImageUploadButton>
+									</Grid>
+								</Grid>
+								<br />
+								<Grid
+									xs={8}
+									sx={{ background: "white" }}
+									container
+									direction="row"
+									justifyContent="center"
+									alignItems="flex-start">
+									<Typography
+										padding={"3px"}
+										gutterBottom
+										sx={{
+											background: "white",
+											textAlign: "center",
+											fontSize: "10px",
+										}}>
+										JPEG, PNG, SVG or GIF <br />
+										(Maximum file size 50MB)
+									</Typography>
+								</Grid>
+							</Box>
+						</Grid>
 
-            <Grid
-              container
-              direction="row"
-              justifyContent="center"
-              alignItems="center"
-              color='#5ebc67'
-            >
-              <Button
-                variant="contained"
-                sx={{background:'#5ebc67'}}
-                onClick={onClickAdd}
-              >
-                Add Product
-              </Button>
-            </Grid>
-          </Grid>
-          <Grid item xs={6}>
-            <div style={{ marginTop: "0px", marginBottom: "-10px" }}>
-              <SliderHome />
-            </div>
-          </Grid>
-        </Grid>
-      </Box>
-    </div>
-  );
+						<Grid
+							container
+							direction="row"
+							justifyContent="center"
+							alignItems="center"
+							color="#5ebc67">
+							<Button
+								variant="contained"
+								sx={{ background: "#5ebc67" }}
+								onClick={onClickAdd}>
+								Add Product
+							</Button>
+						</Grid>
+					</Grid>
+					<Grid item xs={6}>
+						<div
+							style={{
+								marginTop: "0px",
+								marginBottom: "-10px",
+							}}>
+							<SliderHome />
+						</div>
+					</Grid>
+				</Grid>
+			</Box>
+		</div>
+	);
 }

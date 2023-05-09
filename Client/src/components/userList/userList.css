@@ -1,0 +1,46 @@
+.view {
+	background-color: transparent;
+	border: solid 1px #5ebc67;
+	color: #5ebc67;
+	font-weight: 900;
+}
+
+.view:hover {
+	background-color: #5ebc67;
+	color: white;
+	border: solid 1px #5ebc67;
+	font-weight: 900;
+}
+
+.update {
+	background-color: transparent;
+	color: #ffc107;
+	border: solid 1px #ffc107;
+	font-weight: 900;
+}
+
+.update:hover {
+	background-color: #ffc107;
+	color: white;
+	border: solid 1px #ffc107;
+	font-weight: 900;
+}
+
+.delete {
+	background-color: transparent;
+	color: #d11a2a;
+	border: solid 1px #d11a2a;
+	font-weight: 900;
+}
+
+.delete:hover {
+	background-color: #d11a2a;
+	color: white;
+	border: solid 1px #d11a2a;
+	font-weight: 900;
+}
+
+.search {
+	font-weight: 900;
+	padding: 6px 10px;
+}

@@ -1,6 +1,19 @@
 const router = require("express").Router();
-const { findOneUser } = require("../controllers/user/userControls");
+const {
+	findOneUser,
+	retrieveAllUsers,
+	updateUser,
+	deleteUser,
+	filterUserEmail,
+	filterUserFirstName,
+	filterUserLastName,
+	filterUserNIC,
+} = require("../controllers/user/userControls");
 
 router.get("/:id", findOneUser);
+router.post("/email/filter", filterUserEmail);
+router.put("/update/:id", updateUser);
+router.delete("/delete/:id", deleteUser);
+router.get("/", retrieveAllUsers);
 
 module.exports = router;

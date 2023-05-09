@@ -4,14 +4,14 @@ import { MDBBreadcrumb, MDBBreadcrumbItem } from "mdb-react-ui-kit";
 
 const Headings = ({ heading }) => {
 	return (
-		<section style={{ backgroundColor: "#eee", marginTop: "-10px" }}>
-			<div className="pt-4 pb-3 mx-3">
+		<section className="bg-white" style={{ marginTop: "-10px" }}>
+			<div className="pt-4 pb-3 mx-5">
 				<div className="row">
 					<div className="col-lg-12">
 						<MDBBreadcrumb
-							className="bg-light rounded-5 p-3"
+							className="bg-white rounded-5 p-3"
 							style={{
-								border: "solid 3px #5ebc67",
+								borderBottom: "solid 3px #e5e5e5",
 							}}>
 							<MDBBreadcrumbItem
 								active

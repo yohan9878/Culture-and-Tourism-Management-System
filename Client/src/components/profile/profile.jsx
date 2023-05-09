@@ -31,6 +31,8 @@ export default function ProfilePage() {
 
 	const id = window.location.pathname.split("/")[2];
 
+	const image = localStorage.getItem("image");
+
 	useEffect(() => {
 		const fetchUser = async () => {
 			const res = await axios.get(
@@ -65,10 +67,14 @@ export default function ProfilePage() {
 								<div className="row">
 									<div className="col-md-4">
 										<MDBCardImage
-											src={avatar}
+											src={image}
 											alt="avatar"
 											className="rounded-circle"
-											style={{ width: "100px" }}
+											style={{
+												width: "100px",
+												height: "100px",
+												objectFit: "cover",
+											}}
 											fluid
 										/>
 									</div>

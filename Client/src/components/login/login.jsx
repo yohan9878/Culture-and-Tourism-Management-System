@@ -34,6 +34,7 @@ const Login = () => {
 							res.data.userData.lastname,
 					);
 					localStorage.setItem("role", res.data.Role);
+					localStorage.setItem("image", res.data.userData.url);
 					if (res.data.Role === "user") {
 						setInterval(() => {
 							navigate("/");
@@ -41,7 +42,7 @@ const Login = () => {
 						}, 1700);
 					} else {
 						setInterval(() => {
-							navigate("/auth/register");
+							navigate("/supplier");
 							window.location.reload();
 						}, 1700);
 					}

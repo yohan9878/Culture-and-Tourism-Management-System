@@ -24,6 +24,7 @@ const register = async (req, res) => {
 			mobile: req.body.mobile,
 			nationality: req.body.nationality,
 			nic_passport: req.body.nic_passport,
+			url: req.body.url,
 			address_country: req.body.address_country,
 			gender: req.body.gender,
 			password: hashPassword,
