@@ -17,7 +17,6 @@ import ProductView from "./components/viewProduct/index.jsx";
 import AddProduct from "./components/addProduct/index.jsx";
 import UpdateProduct from "./components/updateProduct/index.jsx";
 import UserList from "./components/userList/userList.jsx";
-import UpdateUser from "./components/userUpdate/userUpdate.jsx";
 import CreatePost from "./components/createPost/createPost.jsx";
 import UpdatePost from "./components/updatePost/updatePost.jsx";
 import LocationCard from "./components/locationCard/locationCard.jsx";
@@ -117,10 +116,7 @@ function App() {
 								path="/admin/users"
 								element={<UserList />}
 							/>
-							<Route
-								path="/user/update/:id"
-								element={<UpdateUser />}
-							/>
+
 							<Route
 								path="/admin/post/create"
 								element={<CreatePost />}
