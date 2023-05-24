@@ -15,3 +15,9 @@ Password: poweruser@ctms
 ==========================
 Email: john.s2023@gmail.com
 Password: 123456789
+
+==========================
+     User - 2 Login
+==========================
+Email: emmy.w@gmail.com
+Password: emmy@123456

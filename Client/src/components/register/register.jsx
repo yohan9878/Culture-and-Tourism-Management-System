@@ -198,7 +198,7 @@ const Register = () => {
 			formData.append("file", file);
 
 			const res = await axios.post(
-				"http://localhost:5000/api/categoryImageUpload",
+				"http://localhost:5000/api/user/profilePicture",
 				formData,
 				{
 					headers: {

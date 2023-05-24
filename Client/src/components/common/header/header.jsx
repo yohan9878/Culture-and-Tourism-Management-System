@@ -2,10 +2,11 @@
 import React from "react";
 import logo from "../../../assets/images/logo-no-background.png";
 import { Link } from "react-router-dom";
-import avatar from "../../../assets/images/avatar2.png";
 import { useNavigate } from "react-router-dom";
 import { Tooltip } from "react-tooltip";
-
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import { Flip } from "react-toastify";
 import "./header.css";
 
 const Header = () => {
@@ -20,10 +21,16 @@ const Header = () => {
 	console.log("id: ", id);
 
 	const logout = async () => {
-		console.log("logout");
-		localStorage.clear();
-		navigate("/");
-		window.location.reload();
+		await axios
+			.post("http://localhost:5000/api/auth/logout")
+			.then((res) => {
+				toast.success(res.data.message);
+				localStorage.clear();
+				setInterval(() => {
+					navigate("/");
+					window.location.reload();
+				}, 1700);
+			});
 	};
 
 	const profileNavigate = () => {
@@ -189,6 +196,19 @@ const Header = () => {
 					backgroundColor: "#e5e5e5",
 					fontSize: "12px",
 				}}
+			/>
+			<ToastContainer
+				position="top-right"
+				autoClose={1000}
+				hideProgressBar={false}
+				newestOnTop={false}
+				closeOnClick
+				rtl={false}
+				pauseOnFocusLoss
+				draggable
+				transition={Flip}
+				pauseOnHover={false}
+				theme="colored"
 			/>
 		</nav>
 	);
