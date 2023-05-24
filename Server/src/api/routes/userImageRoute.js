@@ -35,12 +35,12 @@ router.post("/profilePicture", (req, res) => {
 		}
 		cloudinary.v2.uploader.upload(
 			file.tempFilePath,
-			{ folder: "CategoryImages" },
+			{ folder: "ProfileImages" },
 			async (err, result) => {
 				if (err) throw err;
 				removeTmp(file.tempFilePath);
 				res.json({
-					message: "image uploaded successfully",
+					message: "Image uploaded successfully",
 					url: result.secure_url,
 				});
 			},
@@ -61,7 +61,7 @@ router.post("/profilePictureDestroy", (req, res) => {
 			return res.status(400).json({ msg: "No images Selected" });
 		cloudinary.v2.uploader.destroy(public_id, async (err, result) => {
 			if (err) throw err;
-			res.json({ msg: "Deleted Image" });
+			res.json({ msg: "Image Deleted !" });
 		});
 	} catch (err) {
 		return res.status(500).json({ msg: err.message });

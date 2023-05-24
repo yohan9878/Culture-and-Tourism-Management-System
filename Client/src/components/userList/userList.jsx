@@ -241,8 +241,8 @@ const UserList = () => {
 			</div>
 			<table
 				border="2"
-				class="table align-middle mb-0 bg-white rounded-4">
-				<thead class="bg-light">
+				class="table table-bordered table-striped table-hover align-middle mb-0 bg-white rounded-4">
+				<thead class="thead-dark">
 					<tr>
 						<th>Name</th>
 						<th>Mobile</th>

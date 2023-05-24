@@ -11,6 +11,8 @@ const user = new mongoose.Schema(
 		url: {
 			type: String,
 			required: false,
+			default:
+				"https://res.cloudinary.com/dkzx8v24n/image/upload/v1683526835/CategoryImages/f49vpv3rgaf7mmznmi2c.png",
 		},
 		address_country: { type: String, required: true },
 		gender: { type: String, required: true },
