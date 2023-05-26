@@ -1,12 +1,11 @@
 import React from "react";
-// import SliderHome from "../slider/slider";
-import FlashCard from "../productCard";
+import SliderHome from "../slider/slider";
 import MediaCard from "../productCard";
 
 const SuplierHome = () => {
 	return (
 		<div style={{ marginTop: "0px", marginBottom: "-10px" }}>
-			{/* <SliderHome /> */}
+			<SliderHome />
 			<div
 				style={{
 					marginTop: "30px",
