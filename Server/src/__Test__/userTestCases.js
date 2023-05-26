@@ -12,7 +12,7 @@ let id;
 describe("1. HTTP User Login Post", () => {
 	it("Login User (POST)", async () => {
 		let res = await chai
-			.request("http://localhost:5000/api")
+			.request("https://ctms-api.vercel.app/api")
 			.post("/auth/")
 			.send({
 				email: "admin.1@gmail.com",
@@ -27,7 +27,7 @@ describe("1. HTTP User Login Post", () => {
 describe("2. HTTP User Register Post", () => {
 	it("Register User (POST)", async () => {
 		let res = await chai
-			.request("http://localhost:5000/api")
+			.request("https://ctms-api.vercel.app/api")
 			.post("/auth/user")
 			.send({
 				firstname: "Udul",
@@ -57,7 +57,7 @@ describe("2. HTTP User Register Post", () => {
 describe("3. HTTP Retrieve Registered Users Get", () => {
 	it("Retrieve Users (GET)", async () => {
 		let res = await chai
-			.request("http://localhost:5000/api")
+			.request("https://ctms-api.vercel.app/api")
 			.get("/user/");
 
 		expect(res).to.have.status(200);
@@ -71,7 +71,7 @@ describe("3. HTTP Retrieve Registered Users Get", () => {
 describe("4. HTTP Retrieve Specific Registered Users Get", () => {
 	it("Retrive One User (GET)", async () => {
 		let res = await chai
-			.request("http://localhost:5000/api")
+			.request("https://ctms-api.vercel.app/api")
 			.get(`/user/${id}`);
 
 		expect(res).to.have.status(200);
@@ -85,7 +85,7 @@ describe("4. HTTP Retrieve Specific Registered Users Get", () => {
 describe("4. HTTP Update Specific User PUT", () => {
 	it("Update User (PUT)", async () => {
 		let res = await chai
-			.request("http://localhost:5000/api")
+			.request("https://ctms-api.vercel.app/api")
 			.put(`/user/update/${id}`)
 			.send({
 				lastname: "Pallewatta",
@@ -102,7 +102,7 @@ describe("4. HTTP Update Specific User PUT", () => {
 describe("4. HTTP Delete Specific User Delete", () => {
 	it("Delete User (DELETE)", async () => {
 		let res = await chai
-			.request("http://localhost:5000/api")
+			.request("https://ctms-api.vercel.app/api")
 			.delete(`/user/delete/${id}`);
 
 		expect(res).to.have.status(200);
