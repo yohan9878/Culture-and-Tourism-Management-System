@@ -20,7 +20,7 @@ import axios from "axios";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import SliderHome from "../slider/slider";
+// import SliderHome from "../slider/slider";
 import { useParams } from "react-router-dom";
 
 const blue = {
@@ -781,7 +781,7 @@ export default function UpdateProduct() {
 								marginTop: "0px",
 								marginBottom: "-10px",
 							}}>
-							<SliderHome />
+							{/* <SliderHome /> */}
 						</div>
 					</Grid>
 				</Grid>
