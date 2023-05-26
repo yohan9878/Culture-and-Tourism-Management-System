@@ -23,7 +23,7 @@ export default function MediaCard() {
 	useEffect(() => {
 		const getPrducts = async () => {
 			await axios
-				.get(`http://localhost:5000/api/product/getAll`)
+				.get(`/api/product/getAll`)
 				.then((res) => {
 					console.log("Result", res);
 					setProduct(res.data.data);
