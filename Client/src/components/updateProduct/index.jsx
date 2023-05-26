@@ -13,7 +13,6 @@ import Form from "react-bootstrap/Form";
 import PropTypes from "prop-types";
 import { Button } from "@mui/material";
 import { styled } from "@mui/system";
-// import { toast } from "react-toastify";
 import ImageOutlinedIcon from "@mui/icons-material/ImageOutlined";
 import { ImageUploadButton } from "../addProduct/styles";
 import axios from "axios";

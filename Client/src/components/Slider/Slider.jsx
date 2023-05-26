@@ -41,7 +41,7 @@ const background4 = {
 	backgroundPosition: "cover",
 };
 
-const SliderHome = () => {
+export default function SliderHome() {
 	return (
 		<>
 			<Carousel
@@ -97,6 +97,4 @@ const SliderHome = () => {
 			</Carousel>
 		</>
 	);
-};
-
-export default SliderHome;
+}
