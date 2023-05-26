@@ -5,11 +5,9 @@ import axios from "axios";
 
 axios.defaults.baseURL = "https://ctms-api.vercel.app";
 
-ReactDOM.render( <
-    React.StrictMode >
-    <
-    App / >
-    <
-    /React.StrictMode>,
-    document.getElementById("root"),
+ReactDOM.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+	document.getElementById("root"),
 );
