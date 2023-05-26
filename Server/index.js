@@ -42,6 +42,10 @@ mongoose
 // middleware
 app.use(express.json());
 
+app.get("/", (req, res) => {
+	res.send("Welcome to Travel Bee");
+});
+
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
