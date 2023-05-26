@@ -768,7 +768,7 @@ export default function AddProduct() {
 								marginTop: "0px",
 								marginBottom: "-10px",
 							}}>
-							<SliderHome />
+							{/* <SliderHome /> */}
 						</div>
 					</Grid>
 				</Grid>

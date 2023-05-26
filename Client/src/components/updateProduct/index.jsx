@@ -780,7 +780,7 @@ export default function UpdateProduct() {
 								marginTop: "0px",
 								marginBottom: "-10px",
 							}}>
-							<SliderHome />
+							{/* <SliderHome /> */}
 						</div>
 					</Grid>
 				</Grid>
