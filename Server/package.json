@@ -2,26 +2,16 @@
 	"name": "backend",
 	"version": "1.0.0",
 	"description": "Culture and Tourism Management System API",
-	"main": "app.js",
+	"main": "index.js",
 	"engines": {
 		"node": "18.x"
 	},
 	"scripts": {
-		"start": "nodemon --exec babel-node src/app.js",
+		"start": "nodemon index.js",
 		"testuser": "npx mocha --timeout 1000 ./src/__Test__/userTestCases.js"
 	},
 	"author": "Bug Squashers",
 	"license": "ISC",
-	"devDependencies": {
-		"@babel/cli": "^7.21.0",
-		"@babel/core": "^7.21.4",
-		"@babel/node": "^7.20.7",
-		"@babel/preset-env": "^7.21.4",
-		"babel-cli": "^6.26.0",
-		"babel-core": "^6.26.3",
-		"babel-polyfill": "^6.26.0",
-		"babel-register": "^6.26.0"
-	},
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.20.2",

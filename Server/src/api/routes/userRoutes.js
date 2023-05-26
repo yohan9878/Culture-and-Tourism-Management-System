@@ -5,9 +5,6 @@ const {
 	updateUser,
 	deleteUser,
 	filterUserEmail,
-	filterUserFirstName,
-	filterUserLastName,
-	filterUserNIC,
 } = require("../controllers/user/userControls");
 
 router.get("/:id", findOneUser);
