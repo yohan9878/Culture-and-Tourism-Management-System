@@ -285,7 +285,7 @@ export default function UpdateProduct() {
 		} else {
 			try {
 				const res = await axios.post(
-					"http://localhost:5000/api/product/create",
+					"/api/product/create",
 					product,
 				);
 				console.log(res);
@@ -301,9 +301,7 @@ export default function UpdateProduct() {
 	});
 
 	async function fetchData() {
-		const response = await axios.get(
-			`http://localhost:5000/api/product/get/${productId}`,
-		);
+		const response = await axios.get(`/api/product/get/${productId}`);
 		setProduct(response.data.data);
 	}
 	const handleImage = async (e) => {
@@ -321,7 +319,7 @@ export default function UpdateProduct() {
 			formData.append("file", file);
 
 			const res = await axios.post(
-				"http://localhost:5000/api/categoryImageUpload",
+				"/api/categoryImageUpload",
 				formData,
 				{
 					headers: {

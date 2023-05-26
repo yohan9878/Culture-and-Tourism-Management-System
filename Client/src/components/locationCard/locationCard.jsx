@@ -28,7 +28,7 @@ export default function LocationCard() {
 	useEffect(() => {
 		const getPrducts = async () => {
 			await axios
-				.get(`http://localhost:5000/api/product/getAll`)
+				.get(`/api/product/getAll`)
 				.then((res) => {
 					console.log(res);
 					setProduct(res.data.data);

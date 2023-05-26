@@ -237,7 +237,7 @@ export default function AddProduct() {
 	useEffect(() => {
 		const getMainCategory = async () => {
 			await axios
-				.get(`http://localhost:5000/api/MainCategory/`)
+				.get(`/api/MainCategory/`)
 				.then((res) => {
 					console.log(res);
 					setMainCategory(res.data.data);
@@ -251,7 +251,7 @@ export default function AddProduct() {
 		};
 		const getAllCategory = async () => {
 			await axios
-				.post(`http://localhost:5000/api/IdSubCategory/`, {
+				.post(`/api/IdSubCategory/`, {
 					parent: parent,
 				})
 				.then((res) => {
@@ -283,7 +283,7 @@ export default function AddProduct() {
 		} else {
 			try {
 				const res = await axios.post(
-					"http://localhost:5000/api/product/create",
+					"/api/product/create",
 					product,
 				);
 				console.log(res);
@@ -310,7 +310,7 @@ export default function AddProduct() {
 			formData.append("file", file);
 
 			const res = await axios.post(
-				"http://localhost:5000/api/categoryImageUpload",
+				"/api/categoryImageUpload",
 				formData,
 				{
 					headers: {
