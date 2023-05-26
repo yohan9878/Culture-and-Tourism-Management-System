@@ -1,5 +1,5 @@
 import React from "react";
-import SliderHome from "../slider/slider";
+import SliderHome from "../slider/slider.jsx";
 import MediaCard from "../productCard";
 
 const SuplierHome = () => {

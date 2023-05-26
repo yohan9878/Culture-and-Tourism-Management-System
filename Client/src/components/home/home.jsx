@@ -2,7 +2,7 @@ import React from "react";
 import MediaCardUser from "../userProductCard";
 import LocationCard from "../locationCard/locationCard";
 import Headings from "../headings/headings";
-import SliderHome from "../slider/slider";
+import SliderHome from "../slider/slider.jsx";
 
 const Home = () => {
 	return (
