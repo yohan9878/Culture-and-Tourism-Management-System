@@ -1,8 +1,8 @@
-import { Router } from "express";
-import cloudinary from "cloudinary";
-const router = Router();
-import fs from "fs";
+const router = require("express").Router();
+const cloudinary = require("cloudinary");
+const fs = require("fs");
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 // cloudinary configuration
@@ -72,4 +72,5 @@ const removeTmp = (path) => {
 		if (err) throw err;
 	});
 };
-export default router;
+
+module.exports = router;

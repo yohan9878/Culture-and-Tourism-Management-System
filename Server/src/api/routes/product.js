@@ -1,25 +1,10 @@
-import { Router } from "express";
-const productRoute = Router();
-import productController from "../controllers/product.js";
-productRoute.post(
-    "/api/product/create",
-    productController.createProduct
-  );
-  productRoute.get(
-    "/api/product/getAll",
-    productController.getProducts
-  );
-  productRoute.get(
-    "/api/product/get/:id",
-    productController.getOneProduct
-  );
-  productRoute.put(
-    "/api/product/update/:id",
-    productController.updateProduct
-  );
-  productRoute.delete(
-    "/api/product/delete/:id",
-    productController.deleteProduct
-  );
-  
-export default productRoute
+const productRoute = require("express").Router();
+const { productController } = require("../controllers/product.js");
+
+productRoute.post("/create", productController.createProduct);
+productRoute.get("/getAll", productController.getProducts);
+productRoute.get("/get/:id", productController.getOneProduct);
+productRoute.put("update/:id", productController.updateProduct);
+productRoute.delete("/delete/:id", productController.deleteProduct);
+
+module.exports = productRoute;
