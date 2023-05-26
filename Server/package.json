@@ -3,6 +3,9 @@
 	"version": "1.0.0",
 	"description": "Culture and Tourism Management System API",
 	"main": "app.js",
+	"engines": {
+		"node": "14x"
+	},
 	"scripts": {
 		"start": "nodemon --exec babel-node src/app.js",
 		"testuser": "npx mocha --timeout 1000 ./src/__Test__/userTestCases.js"
