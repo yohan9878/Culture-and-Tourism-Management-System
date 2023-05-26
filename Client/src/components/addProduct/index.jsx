@@ -20,7 +20,7 @@ import axios from "axios";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
-// import SliderHome from "../slider/slider";
+import SliderHome from "../slider/slider";
 
 const blue = {
 	100: "#DAECFF",
@@ -768,7 +768,7 @@ export default function AddProduct() {
 								marginTop: "0px",
 								marginBottom: "-10px",
 							}}>
-							{/* <SliderHome /> */}
+							<SliderHome />
 						</div>
 					</Grid>
 				</Grid>
