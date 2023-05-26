@@ -35,9 +35,7 @@ export default function ProfilePage() {
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			const res = await axios.get(
-				`http://localhost:5000/api/user/${id}`,
-			);
+			const res = await axios.get(`/api/user/${id}`);
 			// console.log(res.data);
 			setFirstName(res.data.data.firstname);
 			setLastname(res.data.data.lastname);

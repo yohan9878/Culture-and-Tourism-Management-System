@@ -89,14 +89,7 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-	// const refreashToken = req.params.authToken;
-
-	localstorage.clear();
-
 	try {
-		// refreashTokens = refreashTokens.filter(
-		// 	(token) => token !== refreashToken,
-		// );
 		res.status(200).json({
 			message: "You are logged out successfully",
 		});

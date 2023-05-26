@@ -108,24 +108,22 @@ const Register = () => {
 			// console.log(data);
 
 			try {
-				await axios
-					.post("http://localhost:5000/api/auth/user", data)
-					.then((res) => {
-						// console.log(res);
-						if (login) {
-							toast.success(res.data.message);
-							setInterval(() => {
-								navigate("/admin/users");
-								window.location.reload();
-							}, 1700);
-						} else {
-							toast.success(res.data.message);
-							setInterval(() => {
-								navigate("/auth/login");
-								// window.location.reload();
-							}, 1700);
-						}
-					});
+				await axios.post("/api/auth/user", data).then((res) => {
+					// console.log(res);
+					if (login) {
+						toast.success(res.data.message);
+						setInterval(() => {
+							navigate("/admin/users");
+							window.location.reload();
+						}, 1700);
+					} else {
+						toast.success(res.data.message);
+						setInterval(() => {
+							navigate("/auth/login");
+							// window.location.reload();
+						}, 1700);
+					}
+				});
 			} catch (error) {
 				if (
 					error.response &&
@@ -198,7 +196,7 @@ const Register = () => {
 			formData.append("file", file);
 
 			const res = await axios.post(
-				"http://localhost:5000/api/user/profilePicture",
+				"/api/user/profilePicture",
 				formData,
 				{
 					headers: {

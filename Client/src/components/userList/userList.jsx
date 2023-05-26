@@ -76,35 +76,31 @@ const UserList = () => {
 		setShowDelete(false);
 	};
 	const handleShow = async (id) => {
-		await axios
-			.get("http://localhost:5000/api/user/" + id)
-			.then((res) => {
-				setFirstName(res.data.data.firstname);
-				setLastname(res.data.data.lastname);
-				setEmail(res.data.data.email);
-				setMobile(res.data.data.mobile);
-				setNic_passport(res.data.data.nic_passport);
-				setNatioanality(res.data.data.nationality);
-				setAddress_country(res.data.data.address_country);
-				setGender(res.data.data.gender);
-				setImage(res.data.data.url);
-			});
+		await axios.get("/api/user/" + id).then((res) => {
+			setFirstName(res.data.data.firstname);
+			setLastname(res.data.data.lastname);
+			setEmail(res.data.data.email);
+			setMobile(res.data.data.mobile);
+			setNic_passport(res.data.data.nic_passport);
+			setNatioanality(res.data.data.nationality);
+			setAddress_country(res.data.data.address_country);
+			setGender(res.data.data.gender);
+			setImage(res.data.data.url);
+		});
 		setShow(true);
 	};
 
 	const handleEditShow = async (id) => {
-		await axios
-			.get("http://localhost:5000/api/user/" + id)
-			.then((res) => {
-				setFirstName(res.data.data.firstname);
-				setLastname(res.data.data.lastname);
-				setEmail(res.data.data.email);
-				setMobile(res.data.data.mobile);
-				setNic_passport(res.data.data.nic_passport);
-				setNatioanality(res.data.data.nationality);
-				setAddress_country(res.data.data.address_country);
-				setGender(res.data.data.gender);
-			});
+		await axios.get("/api/user/" + id).then((res) => {
+			setFirstName(res.data.data.firstname);
+			setLastname(res.data.data.lastname);
+			setEmail(res.data.data.email);
+			setMobile(res.data.data.mobile);
+			setNic_passport(res.data.data.nic_passport);
+			setNatioanality(res.data.data.nationality);
+			setAddress_country(res.data.data.address_country);
+			setGender(res.data.data.gender);
+		});
 		setShowEdit(true);
 	};
 
@@ -120,20 +116,18 @@ const UserList = () => {
 			gender: gender,
 			isForiegner: isForigner,
 		};
-		await axios
-			.put("http://localhost:5000/api/user/update/" + _id, data)
-			.then((res) => {
-				toast.success(res.data.message);
-				console.log(res.data.data);
-				localStorage.setItem(
-					"name",
-					res.data.firstname + " " + res.data.lastname,
-				);
-				setShowEdit(false);
-				setInterval(() => {
-					window.location.reload();
-				}, 1700);
-			});
+		await axios.put("/api/user/update/" + _id, data).then((res) => {
+			toast.success(res.data.message);
+			console.log(res.data.data);
+			localStorage.setItem(
+				"name",
+				res.data.firstname + " " + res.data.lastname,
+			);
+			setShowEdit(false);
+			setInterval(() => {
+				window.location.reload();
+			}, 1700);
+		});
 	};
 
 	const handleDeleteShow = () => {
@@ -145,15 +139,13 @@ const UserList = () => {
 			toast.error("Already logged as this user. Cannot Delete !");
 			setShowDelete(false);
 		} else {
-			await axios
-				.delete("http://localhost:5000/api/user/delete/" + delId)
-				.then((res) => {
-					toast.success(res.data.message);
-					setShowDelete(false);
-					setInterval(() => {
-						window.location.reload();
-					}, 1700);
-				});
+			await axios.delete("/api/user/delete/" + delId).then((res) => {
+				toast.success(res.data.message);
+				setShowDelete(false);
+				setInterval(() => {
+					window.location.reload();
+				}, 1700);
+			});
 		}
 	};
 
@@ -164,7 +156,7 @@ const UserList = () => {
 		};
 
 		const response = await axios.post(
-			"http://localhost:5000/api/user/email/filter",
+			"/api/user/email/filter",
 			UserFilterModel,
 		);
 		// console.log(response.data);
@@ -183,15 +175,6 @@ const UserList = () => {
 	};
 
 	useEffect(() => {
-		// const fetchUsers = async () => {
-		// 	await axios
-		// 		.get("http://localhost:5000/api/user/")
-		// 		.then((res) => {
-		// 			setUsers(res.data.data);
-		// 			console.log(res.data.data);
-		// 		});
-		// };
-		// fetchUsers();
 		getUserDataEmail();
 	}, []);
 

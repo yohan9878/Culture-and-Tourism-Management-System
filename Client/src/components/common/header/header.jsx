@@ -21,16 +21,14 @@ const Header = () => {
 	console.log("id: ", id);
 
 	const logout = async () => {
-		await axios
-			.post("http://localhost:5000/api/auth/logout")
-			.then((res) => {
-				toast.success(res.data.message);
-				localStorage.clear();
-				setInterval(() => {
-					navigate("/");
-					window.location.reload();
-				}, 1700);
-			});
+		await axios.post("/api/auth/logout").then((res) => {
+			toast.success(res.data.message);
+			localStorage.clear();
+			setInterval(() => {
+				navigate("/");
+				window.location.reload();
+			}, 1700);
+		});
 	};
 
 	const profileNavigate = () => {

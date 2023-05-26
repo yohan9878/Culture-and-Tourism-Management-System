@@ -20,33 +20,31 @@ const Login = () => {
 
 	const handleLogin = async (req, res) => {
 		try {
-			await axios
-				.post("http://localhost:5000/api/auth/", data)
-				.then((res) => {
-					console.log(res.data);
-					toast.success(res.data.message);
-					localStorage.setItem("login", true);
-					localStorage.setItem("_id", res.data.userData._id);
-					localStorage.setItem(
-						"name",
-						res.data.userData.firstname +
-							" " +
-							res.data.userData.lastname,
-					);
-					localStorage.setItem("role", res.data.Role);
-					localStorage.setItem("image", res.data.userData.url);
-					if (res.data.Role === "user") {
-						setInterval(() => {
-							navigate("/");
-							window.location.reload();
-						}, 1700);
-					} else {
-						setInterval(() => {
-							navigate("/supplier");
-							window.location.reload();
-						}, 1700);
-					}
-				});
+			await axios.post("/api/auth/", data).then((res) => {
+				console.log(res.data);
+				toast.success(res.data.message);
+				localStorage.setItem("login", true);
+				localStorage.setItem("_id", res.data.userData._id);
+				localStorage.setItem(
+					"name",
+					res.data.userData.firstname +
+						" " +
+						res.data.userData.lastname,
+				);
+				localStorage.setItem("role", res.data.Role);
+				localStorage.setItem("image", res.data.userData.url);
+				if (res.data.Role === "user") {
+					setInterval(() => {
+						navigate("/");
+						window.location.reload();
+					}, 1700);
+				} else {
+					setInterval(() => {
+						navigate("/supplier");
+						window.location.reload();
+					}, 1700);
+				}
+			});
 		} catch (error) {
 			if (
 				error.response &&
