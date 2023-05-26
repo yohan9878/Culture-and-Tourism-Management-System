@@ -1,6 +1,4 @@
 const JWT = require("jsonwebtoken");
-const LocalStorage = require("node-localstorage").LocalStorage;
-var localstorage = new LocalStorage("./scratch");
 
 const verifyToken = (req, res, next) => {
 	const token = req.header("access-token");

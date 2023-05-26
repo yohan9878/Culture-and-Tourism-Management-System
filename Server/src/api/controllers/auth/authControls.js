@@ -1,8 +1,6 @@
 const bcryptjs = require("bcryptjs");
 const User = require("../../models/user");
 const JWT = require("jsonwebtoken");
-const LocalStorage = require("node-localstorage").LocalStorage;
-var localstorage = new LocalStorage("./scratch");
 
 const register = async (req, res) => {
 	// check whether the user already exists
