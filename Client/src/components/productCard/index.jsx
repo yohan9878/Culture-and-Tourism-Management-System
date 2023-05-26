@@ -25,7 +25,7 @@ export default function MediaCard() {
 			await axios
 				.get(`http://localhost:5000/api/product/getAll`)
 				.then((res) => {
-					console.log(res);
+					console.log("Result", res);
 					setProduct(res.data.data);
 				})
 				.catch((err) => {
