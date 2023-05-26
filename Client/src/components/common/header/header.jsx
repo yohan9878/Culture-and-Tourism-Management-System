@@ -43,7 +43,7 @@ const Header = () => {
 				{/* <!-- Navbar brand --> */}
 				<a
 					class="navbar-brand me-2"
-					href="http://localhost:3000/"
+					href="/"
 					style={{ marginRight: "50px" }}>
 					<img
 						src={logo}
