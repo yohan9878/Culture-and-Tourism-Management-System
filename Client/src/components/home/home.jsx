@@ -1,10 +1,7 @@
 import React from "react";
 import SliderHome from "../slider/slider";
-import FlashCard from "../productCard";
 import MediaCardUser from "../userProductCard";
 import LocationCard from "../locationCard/locationCard";
-import Heading from "../headings/headings";
-import data from "../../Data";
 import Headings from "../headings/headings";
 
 const Home = () => {
