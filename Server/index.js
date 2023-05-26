@@ -21,19 +21,6 @@ app.use(
 	}),
 );
 
-app.use((req, res, next) => {
-	res.setHeader(
-		"Access-Control-Allow-Origin",
-		"https://ctms-api.vercel.app",
-	);
-	res.setHeader(
-		"Access-Control-Allow-Methods",
-		"GET, POST, PUT, DELETE",
-	);
-	res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-	next();
-});
-
 app.use(express.urlencoded({ extended: true }));
 app.set("trust proxy", 1);
 app.use(
@@ -59,9 +46,6 @@ app.get("/", (req, res) => {
 	res.send("Welcome to Travel Bee");
 });
 
-// Wrap the app in the serverless handler
-const handler = serverless(app);
-
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
@@ -75,6 +59,3 @@ const port = process.env.PORT || 5000;
 app.listen(port || 5000, () => {
 	console.log("Server listening on port " + port || 5000, "🔥");
 });
-
-// Export the handler for serverless deployment
-module.exports = { handler };
