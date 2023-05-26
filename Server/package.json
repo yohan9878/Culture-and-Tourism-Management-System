@@ -5,7 +5,7 @@
 	"main": "app.js",
 	"scripts": {
 		"start": "nodemon --exec babel-node src/app.js",
-		"TestUser": "npx mocha --timeout 1000 ./src/__Test__/userTestCases.js"
+		"testuser": "npx mocha --timeout 1000 ./src/__Test__/userTestCases.js"
 	},
 	"author": "Bug Squashers",
 	"license": "ISC",
