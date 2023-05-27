@@ -57,7 +57,7 @@ app.listen(port || 5000, () => {
 
 	var options = {
 		port: port,
-		host: "https://ctms-api.vercel.app",
+		host: "ctms-api.vercel.app",
 	};
 
 	var request = http.request(options);
