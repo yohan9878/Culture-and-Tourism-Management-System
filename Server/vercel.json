@@ -11,5 +11,16 @@
 			"src": "/(.*)",
 			"dest": "/"
 		}
+	],
+	"headers": [
+		{
+			"source": "/api/(.*)",
+			"headers": [
+				{
+					"key": "Access-Control-Allow-Origin",
+					"value": "https://ctms-client.vercel.app"
+				}
+			]
+		}
 	]
 }
