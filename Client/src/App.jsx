@@ -122,7 +122,7 @@ function App() {
 								element={<CreatePost />}
 							/>
 							<Route
-								path="/admin/post/update"
+								path="/updatePost/:id"
 								element={<UpdatePost />}
 							/>
 							<Route
@@ -130,7 +130,7 @@ function App() {
 								element={<LocationCard />}
 							/>
 							<Route
-								path="/carriers"
+								path="/careers"
 								element={<CarrierCard />}
 							/>
 							<Route
@@ -159,7 +159,7 @@ function App() {
 								element={<ForbiddenPage />}
 							/>
 							<Route
-								path="/carriers"
+								path="/careers"
 								element={<ForbiddenPage />}
 							/>
 						</>

@@ -7,6 +7,7 @@ import slider_1 from "../../assets/images/slider/Image-01.jpg";
 import slider_2 from "../../assets/images/slider/Image-02.jpg";
 import slider_3 from "../../assets/images/slider/Image-03.jpg";
 import slider_4 from "../../assets/images/slider/Image-04.jpg";
+import CarrierCard from "../carrierCard/carrierCard";
 
 const contentStyle = {
 	height: "500px",
@@ -106,7 +107,8 @@ const Home = () => {
 			</>
 			<Headings heading="Products" />
 			<MediaCardUser />
-			<Headings heading="Locations" />
+			{/* <Headings heading="Posts" /> */}
+			<CarrierCard />
 			<LocationCard />
 		</div>
 	);

@@ -11,23 +11,21 @@ import { useEffect, useState } from "react";
 import { Grid } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import Headings from "../headings/headings";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CarrierCard() {
 	let navigate = useNavigate();
 
-	const UpdateProduct = (id) => {
-		navigate(`/updateProduct/${id}`);
-	};
-
-	const [product, setProduct] = React.useState([]);
+	const [career, setCareer] = React.useState([]);
 
 	useEffect(() => {
-		const getPrducts = async () => {
+		const getCareers = async () => {
 			await axios
-				.get(`/api/product/getAll`)
+				.get(`http://localhost:5000/api/career/getAll`)
 				.then((res) => {
 					console.log(res);
-					setProduct(res.data.data);
+					setCareer(res.data.data);
 				})
 				.catch((err) => {
 					console.log(
@@ -37,87 +35,102 @@ export default function CarrierCard() {
 				});
 		};
 
-		getPrducts();
-	});
+		getCareers();
+	}, []);
+
+	const handleDelete = (id) => {
+		console.log(
+			"🚀 ~ file: allDevices.js:27 ~ handleDelete ~ id:",
+			id,
+		);
+
+		axios
+			.delete(`http://localhost:5000/api/career/delete/${id}`)
+			.then((res) => {
+				console.log(
+					"🚀 ~ file: carrierCard.js:31 ~ axios.delete ~ res:",
+					res,
+				);
+				// alert("career removed");
+				toast.success("Career Removed");
+			})
+			.catch((err) => {
+				alert(err.message);
+				toast.error(err.response.message);
+			});
+	};
 
 	return (
 		<>
-			<Headings heading="Carriers" />
+			<Headings heading="Careers" />
 
 			<Grid
 				container
 				spacing={3}
 				sx={{ mx: "30px", marginBottom: "30px" }}
 				style={{ width: "90%" }}>
-				{/* {product.map((product) => ( */}
-				<Grid
-					item
-					xs={3}
-					direction="row"
-					key={product._id}
-					style={{ width: "100%" }}>
-					<Card sx={{ maxWidth: 345 }}>
-						<CardMedia
-							sx={{ height: 160 }}
-							image="https://www.ziprecruiter.com/svc/fotomat/public-ziprecruiter/uploads/job_description_template/Junior_Software_Developer.jpg"
-							title="green iguana"
-						/>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div">
-								Junior Software Developer
-							</Typography>
-							<Typography
-								gutterBottom
-								variant="h6"
-								component="div">
-								Educational requirements
-							</Typography>
-							<Typography
-								variant="body2"
-								color="text.secondary">
-								( A/L passed / O/L passed )
-							</Typography>
-							<Typography
-								gutterBottom
-								variant="h6"
-								component="div">
-								Experience level
-							</Typography>
-							<Typography
-								variant="body2"
-								color="text.secondary"
-								style={{ marginBottom: "10px" }}>
-								Minimum 2 year +
-							</Typography>
-							<Typography
-								variant="body2"
-								color="text.secondary">
-								In the junior software developer role, you
-								will help create programs and participate
-								in test runs. You will be expected to have
-								an in-depth knowledge of common programming
-								languages. You will also be part of a
-								paired programming group to complete tasks
-								with senior developers.
-							</Typography>
-						</CardContent>
-						<CardActions>
-							<Button
-								size="small"
-								variant="contained"
-								sx={{
-									// marginLeft: "60%",
-									background: "#5ebc67",
-								}}>
-								Read More
-							</Button>
-						</CardActions>
-					</Card>
-				</Grid>
-				{/* ))} */}
+				{career.map((career) => (
+					<Grid
+						item
+						xs={3}
+						direction="row"
+						key={career._id}
+						style={{ width: "100%" }}>
+						<Card sx={{ maxWidth: 345 }}>
+							<CardContent>
+								<Typography
+									gutterBottom
+									variant="h5"
+									component="div">
+									{career.title}
+								</Typography>
+								<Typography
+									gutterBottom
+									variant="h6"
+									component="div">
+									Educational requirements
+								</Typography>
+								<Typography
+									variant="body2"
+									color="text.secondary">
+									{career.educationalReq}
+								</Typography>
+								<Typography
+									gutterBottom
+									variant="h6"
+									component="div">
+									Experience level
+								</Typography>
+								<Typography
+									variant="body2"
+									color="text.secondary"
+									style={{ marginBottom: "10px" }}>
+									{career.experience}
+								</Typography>
+								<Typography
+									variant="body2"
+									color="text.secondary">
+									{career.description}
+								</Typography>
+							</CardContent>
+
+							<CardActions>
+								<Button
+									size="small"
+									variant="contained"
+									onClick={() =>
+										handleDelete(career._id)
+									}
+									sx={{
+										marginLeft: "70%",
+										background: "red",
+									}}>
+									Remove
+								</Button>
+							</CardActions>
+						</Card>
+					</Grid>
+				))}
 			</Grid>
 		</>
 	);

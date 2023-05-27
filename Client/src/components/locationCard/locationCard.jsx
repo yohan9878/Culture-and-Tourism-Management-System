@@ -19,19 +19,19 @@ export default function LocationCard() {
 
 	const login = localStorage.getItem("login");
 
-	const UpdateProduct = (id) => {
-		navigate(`/updateProduct/${id}`);
+	const UpdatePost = (id) => {
+		navigate(`/updatePost/${id}`);
 	};
 
-	const [product, setProduct] = React.useState([]);
+	const [post, setPost] = React.useState([]);
 
 	useEffect(() => {
-		const getPrducts = async () => {
+		const getPost = async () => {
 			await axios
-				.get(`/api/product/getAll`)
+				.get(`http://localhost:5000/api/post/getAll`)
 				.then((res) => {
 					console.log(res);
-					setProduct(res.data.data);
+					setPost(res.data.data);
 				})
 				.catch((err) => {
 					console.log(
@@ -41,8 +41,8 @@ export default function LocationCard() {
 				});
 		};
 
-		getPrducts();
-	});
+		getPost();
+	}, []);
 
 	const handleRead = () => {
 		if (!login) {
@@ -52,69 +52,86 @@ export default function LocationCard() {
 		}
 	};
 
+	const handleDelete = (id) => {
+		console.log(
+			"🚀 ~ file: allDevices.js:27 ~ handleDelete ~ id:",
+			id,
+		);
+
+		axios
+			.delete(`http://localhost:5000/api/post/delete/${id}`)
+			.then((res) => {
+				console.log(
+					"🚀 ~ file: allDevices.js:31 ~ axios.delete ~ res:",
+					res,
+				);
+				// alert("post removed");
+				toast.success("Post Removed");
+			})
+			.catch((err) => {
+				// alert(err.message);
+				toast.error(err.response.message);
+			});
+	};
+
 	return (
 		<>
+			<Headings heading="Posts" />
 			<Grid
 				container
 				spacing={3}
 				sx={{ mx: "30px", marginBottom: "30px" }}
 				style={{ width: "90%" }}>
-				{/* {product.map((product) => ( */}
-				<Grid
-					item
-					xs={3}
-					direction="row"
-					key={product._id}
-					style={{ width: "100%" }}>
-					<Card sx={{ maxWidth: 345 }}>
-						<CardMedia
-							sx={{ height: 160 }}
-							image="https://cdn.britannica.com/33/153533-050-89461AB3/Sigiriya-rock-pillar-ruins-top-palace-Sri.jpg"
-							title="green iguana"
-						/>
-						<CardContent>
-							<Typography
-								gutterBottom
-								variant="h5"
-								component="div">
-								Sigiriya
-							</Typography>
-							{/* <Typography
-								gutterBottom
-								variant="h6"
-								component="div">
-								
-							</Typography> */}
-							<Typography
-								variant="body2"
-								color="text.secondary">
-								Sigiriya, also called Lion Rock or Lion
-								Mountain, site in central Sri Lanka
-								consisting of the ruins of an ancient
-								stronghold that was built in the late 5th
-								century CE on a remarkable monolithic rock
-								pillar. The rock, which is so steep that
-								its top overhangs the sides, rises to an
-								elevation of 1,144 feet (349 metres) above
-								sea level and is some 600 feet (180 metres)
-								above the surrounding plain
-							</Typography>
-						</CardContent>
-						<CardActions>
-							<Button
-								size="small"
-								variant="contained"
-								onClick={handleRead}
-								sx={{
-									// marginLeft: "60%",
-									background: "#5ebc67",
-								}}>
-								Read More
-							</Button>
-						</CardActions>
-					</Card>
-				</Grid>
-				{/* ))} */}
+				{post.map((post) => (
+					<Grid
+						item
+						xs={3}
+						direction="row"
+						key={post._id}
+						style={{ width: "100%" }}>
+						<Card sx={{ maxWidth: 345 }}>
+							<CardMedia
+								sx={{ height: 160 }}
+								image={post.img}
+							/>
+							<CardContent>
+								<Typography
+									gutterBottom
+									variant="h5"
+									component="div">
+									{post.location}
+								</Typography>
+
+								<Typography
+									variant="body2"
+									color="text.secondary">
+									{post.description}
+								</Typography>
+							</CardContent>
+
+							<CardActions>
+								<Button
+									size="small"
+									onClick={() => UpdatePost(post._id)}
+									sx={{
+										marginLeft: "55%",
+										color: "#5ebc67",
+									}}>
+									Edit
+								</Button>
+								<Button
+									size="small"
+									onClick={() => handleDelete(post._id)}
+									sx={{
+										marginLeft: "55%",
+										color: "red",
+									}}>
+									Remove
+								</Button>
+							</CardActions>
+						</Card>
+					</Grid>
+				))}
 			</Grid>
 			<ToastContainer
 				position="top-right"

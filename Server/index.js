@@ -11,6 +11,9 @@ const imageUploadRoute = require("./src/api/routes/imageUploadRoute");
 const categoryImageRoute = require("./src/api/routes/categoryImageRoute");
 const productRoute = require("./src/api/routes/product");
 const profileImageRoute = require("./src/api/routes/userImageRoute");
+const careerRoute = require("./src/api/routes/careerRoute");
+const postRoute = require("./src/api/routes/postRoute");
+const postImageRoute = require("./src/api/routes/postImageRoute");
 
 const app = express();
 
@@ -68,6 +71,9 @@ app.use("/api/product", productRoute);
 app.use("/api", imageUploadRoute);
 app.use("/api", categoryImageRoute);
 app.use("/api/user", profileImageRoute);
+app.use("/api", careerRoute);
+app.use("/api", postRoute);
+app.use("/api", postImageRoute);
 
 // creating the port connection with the backend server
 const port = process.env.PORT || 5000;

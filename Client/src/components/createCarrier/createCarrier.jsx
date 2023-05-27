@@ -1,54 +1,40 @@
 import React, { useState } from "react";
 import axios from "axios";
 import TextArea from "antd/es/input/TextArea";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateCarrier() {
-	const [serialNo, setSerialNo] = useState("");
-	const [type, setType] = useState("");
-	console.log("🚀 ~ file: addDevice.js:9 ~ AddDevice ~ type:", type);
-	const [location, setLocation] = useState("");
-	const [image, setImage] = useState("");
-	const [status, setStatus] = useState("");
-	console.log(
-		"🚀 ~ file: addDevice.js:12 ~ AddDevice ~ status:",
-		status,
-	);
+	const [title, setTitle] = useState("");
+	const [description, setDescription] = useState("");
+	const [educationalReq, setEducationalReq] = useState("");
+	const [experience, setexperience] = useState("");
 
-	const handleChange = (event) => {
-		setStatus(event.target.value);
-	};
-
-	const handleImageChange = (event) => {
-		const file = event.target.files[0];
-		const reader = new FileReader();
-
-		reader.onload = (event) => {
-			setImage(event.target.result);
-		};
-
-		reader.readAsDataURL(file);
-	};
+	let navigate = useNavigate();
 
 	function sendData(e) {
 		e.preventDefault();
+		navigate(`/admin/Dashboard`);
 
-		const newDevice = {
-			serialNo,
-			type,
-			location,
-			image,
-			status,
+		const newCareer = {
+			title,
+			description,
+			educationalReq,
+			experience,
 		};
 
 		axios
-			.post("http://localhost:8070/device/add", newDevice)
+			.post("http://localhost:5000/api/career/create", newCareer)
 			.then(() => {
-				alert("Device added");
+				// alert("Career added");
+				toast.success("Career added successfully");
 			})
 			.catch((err) => {
-				alert(err);
+				// alert(err);
+				toast.error(err.response.data.message);
 			});
-		console.log(newDevice.status);
+		console.log(newCareer.status);
 	}
 
 	return (
@@ -56,88 +42,63 @@ export default function CreateCarrier() {
 			<div
 				className="container mt-4 mb-4 px-5 py-5"
 				style={{ boxShadow: "2px 2px 10px gray" }}>
-				<h3>Update Carrier Post</h3>
+				<h3>Career Post</h3>
 				<br></br>
 				<form onSubmit={sendData}>
 					<div className="form-group row mb-2">
-						<label for="serialNo">Title</label>
+						<label for="title">Title</label>
 						<input
 							type="text"
 							className="form-control"
-							id="serialNo"
-							placeholder="Title"
-							value="Junior Software Developer"
+							id="title"
+							placeholder="title"
+							// value="Junior Software Developer"
 							required
 							onChange={(e) => {
-								setSerialNo(e.target.value);
+								setTitle(e.target.value);
 							}}></input>
 					</div>
 
 					<div className="form-group row mb-2">
-						<label for="serialNo">Description</label>
+						<label for="descripton">Description</label>
 						<TextArea
 							type="text"
 							className="form-control"
-							id="serialNo"
+							id="descripton"
 							placeholder="Description"
-							value="In the junior software developer role, you
-							will help create programs and participate
-							in test runs. You will be expected to have
-							an in-depth knowledge of common programming
-							languages. You will also be part of a
-							paired programming group to complete tasks
-							with senior developers."
 							required
 							onChange={(e) => {
-								setSerialNo(e.target.value);
+								setDescription(e.target.value);
 							}}></TextArea>
 					</div>
 
 					<div className="form-group row mb-2">
-						<label for="serialNo">
+						<label for="educationalReq">
 							Educational Requirements
 						</label>
 						<input
 							type="text"
 							className="form-control"
-							id="serialNo"
+							id="educationalReq"
 							placeholder="Educational Requirements"
 							required
-							value="A/L passed | O/L passed"
 							onChange={(e) => {
-								setSerialNo(e.target.value);
+								setEducationalReq(e.target.value);
 							}}></input>
 					</div>
 
 					<div className="form-group row mb-2">
-						<label for="serialNo">Experience Level</label>
+						<label for="experience">Experience Level</label>
 						<input
 							type="text"
 							className="form-control"
-							id="serialNo"
+							id="experience"
 							placeholder="Experience Level"
 							required
-							value="Minimum 2 year +"
 							onChange={(e) => {
-								setSerialNo(e.target.value);
+								setexperience(e.target.value);
 							}}></input>
 					</div>
-
-					<label className="mb-3" for="image">
-						Select Image
-					</label>
-					<br></br>
-					<input
-						type="file"
-						id="image"
-						onChange={handleImageChange}
-						required
-					/>
-					{image && (
-						<div>
-							<img src={image} alt="Selected" />
-						</div>
-					)}
 
 					<br></br>
 					<br></br>
@@ -148,7 +109,7 @@ export default function CreateCarrier() {
 							backgroundColor: "#5ebc67",
 							border: "none",
 						}}>
-						Update Carrier Post
+						Create Career
 					</button>
 				</form>
 			</div>
