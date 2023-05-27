@@ -198,11 +198,11 @@ const Register = () => {
 			const res = await axios.post(
 				"/api/user/profilePicture",
 				formData,
-				{
-					headers: {
-						"content-type": "multipart/form-data",
-					},
-				},
+				// {
+				// 	headers: {
+				// 		"content-type": "multipart/form-data",
+				// 	},
+				// },
 			);
 			setImage(res.data.url);
 			setFormValues({
