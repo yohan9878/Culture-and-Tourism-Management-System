@@ -25,6 +25,20 @@ app.use(
 	}),
 );
 
+// Define your allowCors middleware function
+const allowCors = (req, res, next) => {
+	res.header(
+		"Access-Control-Allow-Origin",
+		"https://ctms-api.vercel.app",
+	);
+	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+	res.header(
+		"Access-Control-Allow-Headers",
+		"Origin, X-Requested-With, Content-Type, Accept",
+	);
+	next();
+};
+
 // creating the connection with database
 mongoose
 	.connect(process.env.URL)
@@ -37,6 +51,9 @@ mongoose
 
 // middleware
 app.use(express.json());
+
+// Use the allowCors middleware for all routes
+app.use(allowCors);
 
 app.get("/", (req, res) => {
 	res.send("Welcome to Travel Bee");
