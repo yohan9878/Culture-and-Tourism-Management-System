@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
+const http = require("http");
 
 const authRoute = require("./src/api/routes/authRoutes");
 const userRoute = require("./src/api/routes/userRoutes");
@@ -58,4 +59,16 @@ const port = process.env.PORT || 5000;
 
 app.listen(port || 5000, () => {
 	console.log("Server listening on port " + port || 5000, "🔥");
+
+	var options = {
+		port: port,
+		host: "https://ctms-api.vercel.app",
+	};
+
+	var request = http.request(options);
+
+	request.setHeader("Cookie", ["type=ninja", "language=javascript"]);
+	// request.setHeader('content-type', 'text/html');
+
+	request.end();
 });
