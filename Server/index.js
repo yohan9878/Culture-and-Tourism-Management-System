@@ -15,12 +15,7 @@ const profileImageRoute = require("./src/api/routes/userImageRoute");
 const app = express();
 
 dotenv.config();
-app.use(
-	cors({
-		credentials: true,
-		origin: true,
-	}),
-);
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.set("trust proxy", 1);
