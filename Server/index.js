@@ -27,14 +27,17 @@ app.use(
 
 // Define your allowCors middleware function
 const allowCors = (req, res, next) => {
-	res.header(
-		"Access-Control-Allow-Origin",
-		"https://ctms-api.vercel.app",
+	res.setHeader("Access-Control-Allow-Credentials", true);
+	res.setHeader("Access-Control-Allow-Origin", "*");
+	// another common pattern
+	// res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+	res.setHeader(
+		"Access-Control-Allow-Methods",
+		"GET,OPTIONS,PATCH,DELETE,POST,PUT",
 	);
-	res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
-	res.header(
+	res.setHeader(
 		"Access-Control-Allow-Headers",
-		"Origin, X-Requested-With, Content-Type, Accept",
+		"X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version",
 	);
 	next();
 };
@@ -72,15 +75,15 @@ const port = process.env.PORT || 5000;
 app.listen(port || 5000, () => {
 	console.log("Server listening on port " + port || 5000, "🔥");
 
-	var options = {
-		port: port,
-		host: "ctms-api.vercel.app",
-	};
+	// var options = {
+	// 	port: port,
+	// 	host: "ctms-api.vercel.app",
+	// };
 
-	var request = http.request(options);
+	// var request = http.request(options);
 
-	request.setHeader("Cookie", ["type=ninja", "language=javascript"]);
-	// request.setHeader('content-type', 'text/html');
+	// request.setHeader("Cookie", ["type=ninja", "language=javascript"]);
+	// // request.setHeader('content-type', 'text/html');
 
-	request.end();
+	// request.end();
 });
